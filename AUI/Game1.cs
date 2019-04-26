@@ -16,13 +16,15 @@ namespace AUI
 {
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
         public Game1()
-        {
-            graphics = new GraphicsDeviceManager(this);
+        {   //set asset refs
+            GraphicsDeviceManager Graphics = new GraphicsDeviceManager(this);
+            Graphics.SynchronizeWithVerticalRetrace = true;
+            Graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            Assets.GDM = Graphics;
+            Assets.CM = Content;
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -31,20 +33,23 @@ namespace AUI
         }
 
         protected override void LoadContent()
-        {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+        {   //spritebatch becomes available here
+            Assets.SB = new SpriteBatch(GraphicsDevice);
+            Assets.Load();
+            ScreenManager.AddScreen(new Title_Screen());
         }
 
         protected override void UnloadContent() { }
 
         protected override void Update(GameTime gameTime)
         {
+            ScreenManager.Update();
             base.Update(gameTime);
         }
-        
+
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            ScreenManager.DrawActiveScreens();
             base.Draw(gameTime);
         }
     }

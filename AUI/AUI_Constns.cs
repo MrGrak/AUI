@@ -17,21 +17,27 @@ namespace AUI
     //constants the ui needs to function and draw properly
 
     public static class Assets
-    {   //contains color scheme and texture ui uses to draw
+    {
+
+        public static GraphicsDeviceManager GDM;
+        public static ContentManager CM;
+        public static SpriteBatch SB;
+
+        //contains color scheme and texture ui uses to draw
         public static Color ForegroundColor = Color.CornflowerBlue;
         public static Color BackgroundColor = Color.MonoGameOrange;
         public static Color TextColor = Color.MonoGameOrange;
         public static Color OverColor = Color.Yellow;
 
         public static Texture2D recTex;
-        public static SpriteFont font;
+        //public static SpriteFont font;
 
         public static float Layer_0 = 0.999990f; //furthest 'back'
         public static float Layer_1 = 0.999989f;
         public static float Layer_2 = 0.999988f;
         public static float Layer_3 = 0.999987f;
 
-        public static void Load(GraphicsDeviceManager GDM, ContentManager CM)
+        public static void Load()
         {
             recTex = new Texture2D(GDM.GraphicsDevice, 1, 1);
             recTex.SetData<Color>(new Color[] { Color.White });
@@ -42,7 +48,7 @@ namespace AUI
 
 
 
-            font = CM.Load<SpriteFont>("pixelFont");
+            //font = CM.Load<SpriteFont>("pixelFont");
         }
     }
 
