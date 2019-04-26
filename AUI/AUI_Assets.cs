@@ -18,7 +18,6 @@ namespace AUI
 
     public static class Assets
     {
-
         public static GraphicsDeviceManager GDM;
         public static ContentManager CM;
         public static SpriteBatch SB;
@@ -30,7 +29,7 @@ namespace AUI
         public static Color OverColor = Color.Yellow;
 
         public static Texture2D recTex;
-        //public static SpriteFont font;
+        public static SpriteFont font;
 
         public static float Layer_0 = 0.999990f; //furthest 'back'
         public static float Layer_1 = 0.999989f;
@@ -41,14 +40,7 @@ namespace AUI
         {
             recTex = new Texture2D(GDM.GraphicsDevice, 1, 1);
             recTex.SetData<Color>(new Color[] { Color.White });
-
-
-
-
-
-
-
-            //font = CM.Load<SpriteFont>("pixelFont");
+            font = CM.Load<SpriteFont>("pixelFont");
         }
     }
 

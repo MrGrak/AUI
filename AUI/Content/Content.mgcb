@@ -13,3 +13,11 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin pixelFont.bmp
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:pixelFont.bmp
+
