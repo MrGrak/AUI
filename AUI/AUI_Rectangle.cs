@@ -14,7 +14,6 @@ using System.Diagnostics;
 
 namespace AUI
 {
-
     public enum RecAnimType
     {
         WipeLeft, WipeRight
@@ -164,5 +163,4 @@ namespace AUI
         }
 
     }
-
 }

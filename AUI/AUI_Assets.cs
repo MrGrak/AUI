@@ -15,7 +15,6 @@ using System.Diagnostics;
 namespace AUI
 {
     //constants the ui needs to function and draw properly
-
     public static class Assets
     {
         public static GraphicsDeviceManager GDM;
