@@ -16,7 +16,7 @@ namespace AUI
 {
     public enum LineAnimType
     {
-        WipeRight, FadeInOut
+        WipeRight, FadeInOut, Reverse
     }
 
     public class AUI_Line : AUI_Base
@@ -59,25 +59,23 @@ namespace AUI
         {
             if (displayState == DisplayState.Opening)
             {   
-                if(animType == LineAnimType.WipeRight)
-                {   //animate to open state
-                    for (i = 0; i < speedOpen; i++) { animLength++; }
-                    if (animLength >= length)
-                    {   //check for opened state
-                        animLength = length;
-                        displayState = DisplayState.Opened;
-                    }
-                }
-                else if(animType == LineAnimType.FadeInOut)
+                if(animType == LineAnimType.FadeInOut)
                 {   //animate to open state
                     if(alpha > 100)
                     {
                         alpha = 100;
                         displayState = DisplayState.Opened;
                     }
-                    else
-                    {   //alpha < 100, fade in
-                        alpha += speedOpen * 0.1f;
+                    else //alpha < 100, fade in
+                    { alpha += speedOpen * 0.1f; }
+                }
+                else
+                {  //animate to open (both wipe and reverse states)
+                    for (i = 0; i < speedOpen; i++) { animLength++; }
+                    if (animLength >= length)
+                    {   //check for opened state
+                        animLength = length;
+                        displayState = DisplayState.Opened;
                     }
                 }
             }
@@ -87,12 +85,23 @@ namespace AUI
                 if (animType == LineAnimType.WipeRight)
                 {   //animate to closed state
                     for (i = 0; i < speedClosed; i++)
-                    { animLength--; Xb++; }
+                    { animLength--; Xb++; } //move line
                     if (animLength <= 0)
                     {   //check for closed state
                         animLength = 0;
                         displayState = DisplayState.Closed;
                     }
+                }
+                else if(animType == LineAnimType.Reverse)
+                {   //animate to closed state
+                    for (i = 0; i < speedClosed; i++)
+                    { animLength--; } //dont move line
+                    if (animLength <= 0)
+                    {   //check for closed state
+                        animLength = 0;
+                        displayState = DisplayState.Closed;
+                    }
+
                 }
                 else if (animType == LineAnimType.FadeInOut)
                 {   //animate to closed state
