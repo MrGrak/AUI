@@ -14,6 +14,11 @@ using System.Diagnostics;
 
 namespace AUI
 {
+    public enum LineAnimType
+    {
+        WipeRight, FadeInOut
+    }
+
     public class AUI_Line : AUI_Base
     {
         public int Xa, Ya, Xb, Yb;
@@ -25,6 +30,8 @@ namespace AUI
         Rectangle texRec = new Rectangle(0, 0, 1, 1); //tex rec
         Vector2 texOrigin = new Vector2(0, 0);
         public int speedOpen = 15, speedClosed = 15, i;
+        public LineAnimType animType = LineAnimType.WipeRight;
+        public float alpha = 1.0f;
 
         public AUI_Line() { Xa = Ya = Xb = Yb = 0; }
 
@@ -51,24 +58,53 @@ namespace AUI
         public override void Update()
         {
             if (displayState == DisplayState.Opening)
-            {   //animate to open state
-                for (i = 0; i < speedOpen; i++) { animLength++; }
-                if (animLength >= length)
-                {   //check for opened state
-                    animLength = length;
-                    displayState = DisplayState.Opened;
+            {   
+                if(animType == LineAnimType.WipeRight)
+                {   //animate to open state
+                    for (i = 0; i < speedOpen; i++) { animLength++; }
+                    if (animLength >= length)
+                    {   //check for opened state
+                        animLength = length;
+                        displayState = DisplayState.Opened;
+                    }
+                }
+                else if(animType == LineAnimType.FadeInOut)
+                {   //animate to open state
+                    if(alpha > 100)
+                    {
+                        alpha = 100;
+                        displayState = DisplayState.Opened;
+                    }
+                    else
+                    {   //alpha < 100, fade in
+                        alpha += speedOpen * 0.1f;
+                    }
                 }
             }
             else if (displayState == DisplayState.Opened) { }
             else if (displayState == DisplayState.Closing)
-            {   
-                //animate to closed state
-                for (i = 0; i < speedClosed; i++)
-                { animLength--; Xb++; }
-                if (animLength <= 0)
-                {   //check for closed state
-                    animLength = 0;
-                    displayState = DisplayState.Closed;
+            {
+                if (animType == LineAnimType.WipeRight)
+                {   //animate to closed state
+                    for (i = 0; i < speedClosed; i++)
+                    { animLength--; Xb++; }
+                    if (animLength <= 0)
+                    {   //check for closed state
+                        animLength = 0;
+                        displayState = DisplayState.Closed;
+                    }
+                }
+                else if (animType == LineAnimType.FadeInOut)
+                {   //animate to closed state
+                    if (alpha < 0.11f)
+                    {
+                        alpha = 0;
+                        displayState = DisplayState.Closed;
+                    }
+                    else
+                    {   //alpha > 0, fade out
+                        alpha -= speedClosed * 0.1f;
+                    }
                 }
             }
             else if (displayState == DisplayState.Closed) { }
