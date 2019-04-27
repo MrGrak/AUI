@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 
 namespace AUI
 {
@@ -22,10 +24,13 @@ namespace AUI
         public static SpriteBatch SB;
 
         //contains color scheme and texture ui uses to draw
-        public static Color ForegroundColor = Color.CornflowerBlue;
-        public static Color BackgroundColor = Color.MonoGameOrange;
-        public static Color TextColor = Color.MonoGameOrange;
-        public static Color OverColor = Color.Yellow;
+        public static Color GameBkgColor = new Color(35, 35, 35, 255);
+
+        //Color.DimGray;
+        public static Color ForegroundColor = Color.Gray;
+        public static Color BackgroundColor = GameBkgColor;
+        public static Color TextColor = Color.Gray;
+        public static Color OverColor = Color.White;
 
         public static Texture2D recTex;
         public static SpriteFont font;

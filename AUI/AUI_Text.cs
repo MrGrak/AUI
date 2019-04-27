@@ -101,6 +101,8 @@ namespace AUI
             }
         }
 
+        //
+
         public Boolean Contains(int X, int Y)
         {   //if hitbox contains X,Y
             return ((((hitbox.X <= X) && (X < (hitbox.X + hitbox.W)))

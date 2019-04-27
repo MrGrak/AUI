@@ -30,13 +30,13 @@ namespace AUI
         public AUI_Button(int X, int Y, int W, string Text)
         {
             color_over = Assets.OverColor;
-            color_normal = Assets.BackgroundColor;
+            color_normal = Assets.ForegroundColor;
             color_over_text = Assets.OverColor;
             color_normal_text = Assets.TextColor;
 
             window = new UI_Window(X, Y, W, 16);
             window.rec_bkg.color = color_normal;
-            window.rec_fore.color = Color.CornflowerBlue;
+            window.rec_fore.color = Assets.BackgroundColor;
             text = new AUI_Text(Text,
                 X, Y, new Color(255, 255, 255, 0));
             displayState = DisplayState.Closed;
@@ -106,6 +106,8 @@ namespace AUI
 
         public void Draw(SpriteBatch SB)
         { window.Draw(SB); text.Draw(SB); }
+
+        //
 
         public void CenterText()
         {   //measure width of the button's text

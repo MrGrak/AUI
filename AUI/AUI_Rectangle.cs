@@ -71,26 +71,6 @@ namespace AUI
             displayState = DisplayState.Closing;
         }
 
-        int offset;
-        public void MoveTo(int X, int Y)
-        {
-            offset = 0;
-            //collect the offset from open/closed recs
-            offset = openedRec.X - openingRec.X;
-            openingRec.X = X + offset;
-            offset = openedRec.Y - openingRec.Y;
-            openingRec.Y = Y + offset;
-            //closed state
-            offset = openedRec.X - closedRec.X;
-            closedRec.X = X + offset;
-            offset = openedRec.Y - closedRec.Y;
-            closedRec.Y = Y + offset;
-            //opened state
-            openedRec.X = X; openedRec.Y = Y;
-            //assume fn called prior to open(), drawrec to opening rec
-            drawRec.X = openingRec.X; drawRec.Y = openingRec.Y;
-        }
-
         public void Update()
         {
             if (displayState == DisplayState.Opening)
@@ -120,6 +100,28 @@ namespace AUI
         public void Draw(SpriteBatch SB)
         {
             SB.Draw(Assets.recTex, drawRec, color * alpha);
+        }
+
+        //
+
+        int offset;
+        public void MoveTo(int X, int Y)
+        {
+            offset = 0;
+            //collect the offset from open/closed recs
+            offset = openedRec.X - openingRec.X;
+            openingRec.X = X + offset;
+            offset = openedRec.Y - openingRec.Y;
+            openingRec.Y = Y + offset;
+            //closed state
+            offset = openedRec.X - closedRec.X;
+            closedRec.X = X + offset;
+            offset = openedRec.Y - closedRec.Y;
+            closedRec.Y = Y + offset;
+            //opened state
+            openedRec.X = X; openedRec.Y = Y;
+            //assume fn called prior to open(), drawrec to opening rec
+            drawRec.X = openingRec.X; drawRec.Y = openingRec.Y;
         }
 
         private void Animate_Open()

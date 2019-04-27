@@ -88,6 +88,8 @@ namespace AUI
             );
         }
 
+        //
+
         public void GetLength()
         {
             angle = (float)Math.Atan2((Ya - Yb), (Xa - Xb));

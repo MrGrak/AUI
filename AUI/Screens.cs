@@ -11,10 +11,12 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
 
 namespace AUI
 {
-
     public enum ExitAction
     {
         Reload
@@ -69,7 +71,7 @@ namespace AUI
         public static void DrawActiveScreens()
         {   
             Assets.GDM.GraphicsDevice.SetRenderTarget(null);
-            Assets.GDM.GraphicsDevice.Clear(Color.CornflowerBlue);
+            Assets.GDM.GraphicsDevice.Clear(Assets.GameBkgColor);
             Assets.SB.Begin(SpriteSortMode.Deferred,
                 BlendState.AlphaBlend,
                 SamplerState.AnisotropicClamp);
@@ -79,9 +81,6 @@ namespace AUI
             Assets.SB.End();
         }
     }
-    
-
-
 
     public class Title_Screen : Screen
     {

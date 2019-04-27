@@ -14,8 +14,6 @@ using System.Diagnostics;
 
 namespace AUI
 {
-
-    
     public class UI_Window
     {
         public DisplayState displayState = DisplayState.Closed;
@@ -81,6 +79,8 @@ namespace AUI
         {
             rec_bkg.Draw(SB); rec_fore.Draw(SB);
         }
+
+        //
 
         public void MoveTo(int X, int Y)
         {

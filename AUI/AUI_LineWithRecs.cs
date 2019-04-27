@@ -88,6 +88,8 @@ namespace AUI
             line.Draw(SB); recA.Draw(SB); recB.Draw(SB);
         }
 
+        //
+
         public void MoveTo(int X, int Y)
         {
             recA.MoveTo(X - 1, Y - 1);
