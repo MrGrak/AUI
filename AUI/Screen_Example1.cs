@@ -104,6 +104,8 @@ namespace AUI
             { aui_instances[i].Update(); }
             for (i = 0; i < aui_crown_children.Count; i++)
             { aui_crown_children[i].Update(); }
+            //we can randomly move children around each frame too
+            AnimateChildren();
 
             #region Screen Display States
 
@@ -249,10 +251,6 @@ namespace AUI
                 button_crown_base.window.rec_bkg.openedRec.Y);
         }
 
-
-
-
-
         public void OpenCrownChildren()
         {   
             for (i = 0; i < aui_crown_children.Count; i++)
@@ -266,6 +264,13 @@ namespace AUI
             { aui_crown_children[i].Close(); }
             childOpen = false;
         }
+
+        public void AnimateChildren()
+        {
+            for (i = 0; i < aui_crown_children.Count; i++)
+            { aui_crown_children[i].Float(); }
+        }
+        
 
 
     }

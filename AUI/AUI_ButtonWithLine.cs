@@ -10,6 +10,8 @@ namespace AUI
     {
         public AUI_Button button;
         public AUI_LineWithRecs line;
+        public float floatX = 0;
+        public float floatY = 0;
 
         public AUI_ButtonWithLine(int X, int Y, int W, string Txt)
         {
@@ -58,6 +60,32 @@ namespace AUI
         {
             if(displayState != DisplayState.Closed)
             { button.Draw(); line.Draw(); }
+        }
+
+        //
+        public void Float()
+        {
+            if(Functions.Random.Next(0, 100) > 90)
+            {
+                int amnt = Functions.Random.Next(-1, 2);
+                //float button
+                button.MoveTo( //maybe add or subtract a pixel distance
+                    (button.window.rec_bkg.openedRec.X + amnt),
+                    (button.window.rec_bkg.openedRec.Y + amnt));
+                //float line
+                line.line.SetTarget(
+                    (line.line.Xa + amnt),
+                    (line.line.Ya + amnt));
+                //float rec
+                line.recB.MoveTo(
+                    line.recB.openedRec.X + amnt,
+                    line.recB.openedRec.Y + amnt);
+            }
+        }
+
+        public void ResetFloat()
+        {
+            floatX = 0f; floatY = 0f;
         }
 
     }
