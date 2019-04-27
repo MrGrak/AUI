@@ -61,8 +61,10 @@ namespace AUI
             }
             else if (displayState == DisplayState.Opened) { }
             else if (displayState == DisplayState.Closing)
-            {   //animate to closed state
-                for (i = 0; i < speedClosed; i++) { animLength--; }
+            {   
+                //animate to closed state
+                for (i = 0; i < speedClosed; i++)
+                { animLength--; Xb++; }
                 if (animLength <= 0)
                 {   //check for closed state
                     animLength = 0;

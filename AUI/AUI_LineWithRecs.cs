@@ -14,13 +14,13 @@ using System.Diagnostics;
 
 namespace AUI
 {
-    public class UI_LineWithRecs : AUI_Base
+    public class AUI_LineWithRecs : AUI_Base
     {   //line anims in/out
         public AUI_Line line;
         public AUI_Rectangle recA;
         public AUI_Rectangle recB;
 
-        public UI_LineWithRecs()
+        public AUI_LineWithRecs()
         {
             line = new AUI_Line();
             recA = new AUI_Rectangle(-16, -16, 16, 16, RecAnimType.WipeRight);
@@ -39,7 +39,7 @@ namespace AUI
             {
                 displayState = DisplayState.Opening;
                 line.Open(); recA.Open();
-                recA.alpha = 1.0f; recB.alpha = 1.0f;
+                recA.alpha = 1.0f; recB.alpha = 0.0f;
             }
         }
 
@@ -60,7 +60,10 @@ namespace AUI
             if (displayState == DisplayState.Opening)
             {
                 if (line.displayState == DisplayState.Opened)
-                { displayState = DisplayState.Opened; recB.Open(); }
+                {
+                    displayState = DisplayState.Opened;
+                    recB.Open(); recB.alpha = 1.0f;
+                }
             }
             else if (displayState == DisplayState.Opened) { }
             else if (displayState == DisplayState.Closing)

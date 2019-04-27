@@ -22,8 +22,9 @@ namespace AUI
     public class AUI_Rectangle : AUI_Base
     {
         public RecAnimType animType = RecAnimType.WipeRight;
-        public Color color; //can be set directly, or set to up/over refs
-        public Color colorUp = Assets.BackgroundColor;
+        //can be set directly, or set to up/over refs
+        public Color color = Assets.ForegroundColor;
+        public Color colorUp = Assets.ForegroundColor;
         public Color colorOver = Assets.OverColor;
 
         public Boolean active = true; //flag for pool use
@@ -50,7 +51,7 @@ namespace AUI
                 closedRec = new Int4(X, Y, 0, H);
             }
 
-            //set draw to opening rec values
+            //set draw to closed rec values
             drawRec.X = closedRec.X; drawRec.Y = closedRec.Y;
             drawRec.Width = closedRec.W; drawRec.Height = closedRec.H;
         }
@@ -107,16 +108,21 @@ namespace AUI
         public void MoveTo(int X, int Y)
         {
             offset = 0;
+
             //collect the offset from open/closed recs
+
+
             offset = openedRec.X - openingRec.X;
             openingRec.X = X + offset;
             offset = openedRec.Y - openingRec.Y;
             openingRec.Y = Y + offset;
-            //closed state
+
+
             offset = openedRec.X - closedRec.X;
-            closedRec.X = X + offset;
+            closedRec.X = X + offset + 16;
             offset = openedRec.Y - closedRec.Y;
             closedRec.Y = Y + offset;
+
             //opened state
             openedRec.X = X; openedRec.Y = Y;
             //assume fn called prior to open(), drawrec to opening rec

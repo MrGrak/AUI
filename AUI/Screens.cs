@@ -73,7 +73,7 @@ namespace AUI
             Assets.GDM.GraphicsDevice.Clear(Assets.GameBkgColor);
             Assets.SB.Begin(SpriteSortMode.Deferred,
                 BlendState.AlphaBlend,
-                SamplerState.AnisotropicClamp);
+                SamplerState.PointClamp);
 
             foreach (Screen screen in screens) { screen.Draw(); }
 
@@ -85,29 +85,97 @@ namespace AUI
     {
         int i;
         public List<AUI_Base> aui_instances;
-        AUI_Button button_test;
-
+        AUI_Button button_screen1;
+        AUI_Button button_screen2;
+        AUI_Button button_screen3;
+        AUI_Button button_screen4;
+        AUI_Button button_screen5;
+        AUI_Text titleText;
+        AUI_Text descText;
+        
 
         public Title_Screen()
         {
             aui_instances = new List<AUI_Base>();
 
-            button_test = new AUI_Button(
-                16 * 5, 16 * 5, 16 * 5, "test");
-            button_test.CenterText();
-            aui_instances.Add(button_test);
+            button_screen1 = new AUI_Button(
+                16 * 8, 16 * 20, 16 * 5, "example 1");
+            button_screen1.CenterText();
+            aui_instances.Add(button_screen1);
+
+            button_screen2 = new AUI_Button(
+                16 * 15, 16 * 20, 16 * 5, "example 2");
+            button_screen2.CenterText();
+            aui_instances.Add(button_screen2);
+
+            button_screen3 = new AUI_Button(
+                16 * 22, 16 * 20, 16 * 5, "example 3");
+            button_screen3.CenterText();
+            aui_instances.Add(button_screen3);
+
+            button_screen4 = new AUI_Button(
+                16 * 29, 16 * 20, 16 * 5, "example 4");
+            button_screen4.CenterText();
+            aui_instances.Add(button_screen4);
+
+            button_screen5 = new AUI_Button(
+                16 * 36, 16 * 20, 16 * 5, "example 5");
+            button_screen5.CenterText();
+            aui_instances.Add(button_screen5);
+
+            titleText = new AUI_Text("grak's aui lab",
+                16 * 8, 16 * 5, Assets.ForegroundColor);
+            titleText.scale = 10.0f;
+            aui_instances.Add(titleText);
+
+            descText = new AUI_Text(
+                "this monogame laboratory showcases a variety of animated ui." +
+                "\nclick a button below to see an example.",
+                16 * 8, 16 * 14, Assets.ForegroundColor);
+            descText.scale = 2.0f;
+            aui_instances.Add(descText);
+
+            AUI_LineWithRecs line0 = new AUI_LineWithRecs();
+            line0.MoveTo(16 * 8, 16 * 6);
+            line0.SetTarget(16 * 41, 16 * 6);
+            line0.line.speedOpen = 25;
+            line0.line.speedClosed = 25;
+            aui_instances.Add(line0);
+
+            AUI_LineWithRecs line1 = new AUI_LineWithRecs();
+            line1.MoveTo(16 * 8, 16 * 13);
+            line1.SetTarget(16 * 41, 16 * 13);
+            line1.line.speedOpen = 20;
+            line1.line.speedClosed = 20;
+            aui_instances.Add(line1);
+
+            AUI_LineWithRecs line2 = new AUI_LineWithRecs();
+            line2.MoveTo(16 * 8, 16 * 18);
+            line2.SetTarget(16 * 41, 16 * 18);
+            line2.line.speedOpen = 15;
+            line2.line.speedClosed = 15;
+            aui_instances.Add(line2);
+
+            AUI_LineWithRecs line3 = new AUI_LineWithRecs();
+            line3.MoveTo(16 * 8, 16 * 23);
+            line3.SetTarget(16 * 41, 16 * 23);
+            line3.line.speedOpen = 10;
+            line3.line.speedClosed = 10;
+            aui_instances.Add(line3);
         }
 
         public override void Open()
         {
             displayState = DisplayState.Opening;
-            button_test.Open();
+            for (i = 0; i < aui_instances.Count; i++)
+            { aui_instances[i].Open(); }
         }
 
         public override void Close(ExitAction EA)
         {
-            button_test.Close();
             displayState = DisplayState.Closing;
+            for (i = 0; i < aui_instances.Count; i++)
+            { aui_instances[i].Close(); }
         }
 
         public override void Update()
@@ -120,7 +188,7 @@ namespace AUI
 
             if (displayState == DisplayState.Opening)
             {
-                if (button_test.displayState == DisplayState.Opened)
+                if (button_screen1.displayState == DisplayState.Opened)
                 {
                     displayState = DisplayState.Opened;
                 }
@@ -129,33 +197,92 @@ namespace AUI
             {
                 //handle main input here
 
-                #region Test Btn Interaction
+                #region Screen1 Btn Interaction
 
                 if (Functions.Contains(
-                    button_test.window.rec_bkg.openedRec,
+                    button_screen1.window.rec_bkg.openedRec,
                     Input.cursorPos.X, Input.cursorPos.Y))
                 {   //give button focus
-                    button_test.focused = true;
+                    button_screen1.focused = true;
                     //check for new left click
                     if (Input.IsLeftMouseBtnPress())
-                    {
-                        button_test.text.ChangeText(
-                            "button test passed");
-                        button_test.CenterText();
-                        Close(ExitAction.Reload);
-                    }
+                    { Close(ExitAction.Reload); }
                 }
-                else { button_test.focused = false; }
+                else { button_screen1.focused = false; }
+
+                #endregion
+
+                #region Screen2 Btn Interaction
+
+                if (Functions.Contains(
+                    button_screen2.window.rec_bkg.openedRec,
+                    Input.cursorPos.X, Input.cursorPos.Y))
+                {   //give button focus
+                    button_screen2.focused = true;
+                    //check for new left click
+                    if (Input.IsLeftMouseBtnPress())
+                    { Close(ExitAction.Reload); }
+                }
+                else { button_screen2.focused = false; }
+
+                #endregion
+
+                #region Screen3 Btn Interaction
+
+                if (Functions.Contains(
+                    button_screen3.window.rec_bkg.openedRec,
+                    Input.cursorPos.X, Input.cursorPos.Y))
+                {   //give button focus
+                    button_screen3.focused = true;
+                    //check for new left click
+                    if (Input.IsLeftMouseBtnPress())
+                    { Close(ExitAction.Reload); }
+                }
+                else { button_screen3.focused = false; }
+
+                #endregion
+
+                #region Screen4 Btn Interaction
+
+                if (Functions.Contains(
+                    button_screen4.window.rec_bkg.openedRec,
+                    Input.cursorPos.X, Input.cursorPos.Y))
+                {   //give button focus
+                    button_screen4.focused = true;
+                    //check for new left click
+                    if (Input.IsLeftMouseBtnPress())
+                    { Close(ExitAction.Reload); }
+                }
+                else { button_screen4.focused = false; }
+
+                #endregion
+
+                #region Screen5 Btn Interaction
+
+                if (Functions.Contains(
+                    button_screen5.window.rec_bkg.openedRec,
+                    Input.cursorPos.X, Input.cursorPos.Y))
+                {   //give button focus
+                    button_screen5.focused = true;
+                    //check for new left click
+                    if (Input.IsLeftMouseBtnPress())
+                    { Close(ExitAction.Reload); }
+                }
+                else { button_screen5.focused = false; }
 
                 #endregion
 
             }
             else if (displayState == DisplayState.Closing)
             {
-                if (button_test.displayState == DisplayState.Closed)
+                //ensure all aui items are closed
+                Boolean allClosed = true; //assume true, prove false
+                for (i = 0; i < aui_instances.Count; i++)
                 {
-                    displayState = DisplayState.Closed;
+                    if (aui_instances[i].displayState != DisplayState.Closed)
+                    { allClosed = false; }
                 }
+                if (allClosed) { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
             {
