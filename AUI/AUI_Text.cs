@@ -14,9 +14,8 @@ using System.Diagnostics;
 
 namespace AUI
 {
-    public class AUI_Text
+    public class AUI_Text : AUI_Base
     {
-        public DisplayState displayState;
         public SpriteFont font;
         public String text;
         String temp;
@@ -46,7 +45,7 @@ namespace AUI
             displayState = DisplayState.Closed;
         }
 
-        public void Open()
+        public override void Open()
         {
             if (displayState == DisplayState.Opened
                 || displayState == DisplayState.Opening) { return; }
@@ -56,7 +55,7 @@ namespace AUI
             alpha = 1.0f;
         }
 
-        public void Close()
+        public override void Close()
         {
             if (displayState == DisplayState.Closed
                 || displayState == DisplayState.Closing) { return; }
@@ -64,7 +63,7 @@ namespace AUI
             alpha = 1.0f;
         }
 
-        public void Update()
+        public override void Update()
         {
             if (displayState == DisplayState.Opening)
             {   //animate to open state
@@ -91,11 +90,11 @@ namespace AUI
             else if (displayState == DisplayState.Closed) { }
         }
 
-        public void Draw(SpriteBatch SB)
+        public override void Draw()
         {
             if (font != null)
             {
-                SB.DrawString(font, drawText, position,
+                Assets.SB.DrawString(font, drawText, position,
                     color * alpha, rotation, Vector2.Zero,
                     scale, SpriteEffects.None, zDepth);
             }

@@ -130,4 +130,5 @@ namespace AUI
             SB.Draw(Assets.recTex, DrawRec, color * alpha);
         }
     }
+
 }

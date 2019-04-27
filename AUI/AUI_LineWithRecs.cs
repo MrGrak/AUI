@@ -14,9 +14,8 @@ using System.Diagnostics;
 
 namespace AUI
 {
-    public class UI_LineWithRecs
+    public class UI_LineWithRecs : AUI_Base
     {   //line anims in/out
-        public DisplayState displayState = DisplayState.Closed;
         public AUI_Line line;
         public AUI_Rectangle recA;
         public AUI_Rectangle recB;
@@ -34,7 +33,7 @@ namespace AUI
             recB.closedRec.W = recB.closedRec.H = 3;
         }
 
-        public void Open()
+        public override void Open()
         {
             if (displayState == DisplayState.Closed)
             {
@@ -44,7 +43,7 @@ namespace AUI
             }
         }
 
-        public void Close()
+        public override void Close()
         {
             if (displayState == DisplayState.Opened
                 || displayState == DisplayState.Opening)
@@ -54,7 +53,7 @@ namespace AUI
             }
         }
 
-        public void Update()
+        public override void Update()
         {
             line.Update(); recA.Update(); recB.Update();
 
@@ -83,9 +82,9 @@ namespace AUI
             //Debug.WriteLine("recB ds: " + recB.displayState);
         }
 
-        public void Draw(SpriteBatch SB)
+        public override void Draw()
         {
-            line.Draw(SB); recA.Draw(SB); recB.Draw(SB);
+            line.Draw(); recA.Draw(); recB.Draw();
         }
 
         //

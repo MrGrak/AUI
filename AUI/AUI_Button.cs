@@ -15,9 +15,8 @@ using System.Diagnostics;
 namespace AUI
 {
 
-    public class AUI_Button
+    public class AUI_Button : AUI_Base
     {
-        public DisplayState displayState;
         public UI_Window window;
         public AUI_Text text;
 
@@ -42,7 +41,7 @@ namespace AUI
             displayState = DisplayState.Closed;
         }
 
-        public void Open()
+        public override void Open()
         {
             if (displayState == DisplayState.Closed)
             {
@@ -52,7 +51,7 @@ namespace AUI
             }
         }
 
-        public void Close()
+        public override void Close()
         {
             if (displayState == DisplayState.Opened
                 || displayState == DisplayState.Opening)
@@ -62,7 +61,7 @@ namespace AUI
             }
         }
 
-        public void Update()
+        public override void Update()
         {
             window.Update(); text.Update();
 
@@ -104,8 +103,8 @@ namespace AUI
             //Debug.WriteLine("text ds: " + text.displayState);
         }
 
-        public void Draw(SpriteBatch SB)
-        { window.Draw(SB); text.Draw(SB); }
+        public override void Draw()
+        { window.Draw(); text.Draw(); }
 
         //
 

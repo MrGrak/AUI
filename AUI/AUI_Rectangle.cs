@@ -19,9 +19,8 @@ namespace AUI
         WipeLeft, WipeRight
     }
 
-    public class AUI_Rectangle
+    public class AUI_Rectangle : AUI_Base
     {
-        public DisplayState displayState = DisplayState.Closed;
         public RecAnimType animType = RecAnimType.WipeRight;
         public Color color; //can be set directly, or set to up/over refs
         public Color colorUp = Assets.BackgroundColor;
@@ -56,7 +55,7 @@ namespace AUI
             drawRec.Width = closedRec.W; drawRec.Height = closedRec.H;
         }
 
-        public void Open()
+        public override void Open()
         {
             if (displayState != DisplayState.Closed) { return; }
             displayState = DisplayState.Opening;
@@ -64,14 +63,14 @@ namespace AUI
             drawRec.Width = openingRec.W; drawRec.Height = openingRec.H;
         }
 
-        public void Close()
+        public override void Close()
         {
             if (displayState == DisplayState.Closed
                 || displayState == DisplayState.Closing) { return; }
             displayState = DisplayState.Closing;
         }
 
-        public void Update()
+        public override void Update()
         {
             if (displayState == DisplayState.Opening)
             {
@@ -97,9 +96,9 @@ namespace AUI
             else if (displayState == DisplayState.Closed) { }
         }
 
-        public void Draw(SpriteBatch SB)
+        public override void Draw()
         {
-            SB.Draw(Assets.recTex, drawRec, color * alpha);
+            Assets.SB.Draw(Assets.recTex, drawRec, color * alpha);
         }
 
         //

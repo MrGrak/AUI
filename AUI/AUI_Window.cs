@@ -14,9 +14,8 @@ using System.Diagnostics;
 
 namespace AUI
 {
-    public class UI_Window
+    public class UI_Window : AUI_Base
     {
-        public DisplayState displayState = DisplayState.Closed;
         public AUI_Rectangle rec_bkg;
         public AUI_Rectangle rec_fore;
         public int openWait = 2, openCounter;
@@ -32,14 +31,14 @@ namespace AUI
             rec_fore.color = Assets.ForegroundColor;
         }
 
-        public void Open()
+        public override void Open()
         {
             if (displayState != DisplayState.Closed) { return; }
             displayState = DisplayState.Opening;
             rec_bkg.Open(); openCounter = 0; //bkg, then fore
         }
 
-        public void Close()
+        public override void Close()
         {
             if (displayState == DisplayState.Closed
                 || displayState == DisplayState.Closing) { return; }
@@ -47,7 +46,7 @@ namespace AUI
             rec_fore.Close(); closeCounter = 0; //fore, then bkg
         }
 
-        public void Update()
+        public override void Update()
         {
             rec_bkg.Update(); rec_fore.Update();
 
@@ -75,9 +74,9 @@ namespace AUI
             else if (displayState == DisplayState.Closed) { }
         }
 
-        public void Draw(SpriteBatch SB)
+        public override void Draw()
         {
-            rec_bkg.Draw(SB); rec_fore.Draw(SB);
+            rec_bkg.Draw(); rec_fore.Draw();
         }
 
         //

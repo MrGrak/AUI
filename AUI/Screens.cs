@@ -160,7 +160,7 @@ namespace AUI
 
         public override void Draw()
         {
-            button_test.Draw(Assets.SB);
+            button_test.Draw();
         }
 
     }

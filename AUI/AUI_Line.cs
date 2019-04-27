@@ -14,9 +14,8 @@ using System.Diagnostics;
 
 namespace AUI
 {
-    public class AUI_Line
+    public class AUI_Line : AUI_Base
     {
-        public DisplayState displayState = DisplayState.Closed;
         public int Xa, Ya, Xb, Yb;
         public Color color = Assets.ForegroundColor;
         public bool active = true;
@@ -35,21 +34,21 @@ namespace AUI
             Xb = endX; Yb = endY;
         }
 
-        public void Open()
+        public override void Open()
         {
             if (displayState != DisplayState.Closed) { return; }
             displayState = DisplayState.Opening;
             animLength = 0; GetLength();
         }
 
-        public void Close()
+        public override void Close()
         {
             if (displayState == DisplayState.Closed
                 || displayState == DisplayState.Closing) { return; }
             displayState = DisplayState.Closing;
         }
 
-        public void Update()
+        public override void Update()
         {
             if (displayState == DisplayState.Opening)
             {   //animate to open state
@@ -73,10 +72,10 @@ namespace AUI
             else if (displayState == DisplayState.Closed) { }
         }
 
-        public void Draw(SpriteBatch SB)
+        public override void Draw()
         {
             drawRec = new Rectangle(Xb, Yb, animLength, 1);
-            SB.Draw(
+            Assets.SB.Draw(
                 Assets.recTex,
                 drawRec, //draw rec
                 texRec, //texture rec
