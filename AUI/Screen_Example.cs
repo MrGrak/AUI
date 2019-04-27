@@ -17,14 +17,14 @@ using System.Reflection;
 
 namespace AUI
 {
-    public class Screen_Example1 : Screen
+    //this is just an example of how to write a basic screen with a back button
+    public class Screen_Example : Screen
     {
         int i;
         public List<AUI_Base> aui_instances;
         AUI_Button button_back;
 
-
-        public Screen_Example1()
+        public Screen_Example()
         {
             aui_instances = new List<AUI_Base>();
 
