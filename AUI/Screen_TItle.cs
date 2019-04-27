@@ -17,71 +17,7 @@ using System.Reflection;
 
 namespace AUI
 {
-    public enum ExitAction
-    {
-        Reload
-    }
-    
-    public abstract class Screen
-    {
-        public DisplayState displayState;
-        public ExitAction exitAction;
-        public int i;
-        public Screen() { }
-        public virtual void Open() { }
-        public virtual void Close(ExitAction EA) { }
-        public virtual void Update() { }
-        public virtual void Draw() { }
-    }
-
-    public static class ScreenManager
-    {   
-        public static List<Screen> screens = new List<Screen>();
-        public static Screen activeScreen; 
-
-        public static void AddScreen(Screen screen)
-        {
-            screen.Open();
-            screens.Add(screen);
-        }
-
-        public static void RemoveScreen(Screen screen)
-        {
-            screens.Remove(screen);
-        }
-
-        public static void ExitAndLoad(Screen screenToLoad)
-        {   //remove every screen on screens list
-            while (screens.Count > 0)
-            { screens.Remove(screens[0]); }
-            AddScreen(screenToLoad);
-            screenToLoad.Open();
-        }
-
-        public static void Update()
-        {
-            if (screens.Count > 0)
-            {   //the only 'active screen' is the last one (top one)
-                activeScreen = screens[screens.Count - 1];
-                activeScreen.Update();
-            }
-        }
-
-        public static void DrawActiveScreens()
-        {   
-            Assets.GDM.GraphicsDevice.SetRenderTarget(null);
-            Assets.GDM.GraphicsDevice.Clear(Assets.GameBkgColor);
-            Assets.SB.Begin(SpriteSortMode.Deferred,
-                BlendState.AlphaBlend,
-                SamplerState.PointClamp);
-
-            foreach (Screen screen in screens) { screen.Draw(); }
-
-            Assets.SB.End();
-        }
-    }
-
-    public class Title_Screen : Screen
+    public class Screen_Title : Screen
     {
         int i;
         public List<AUI_Base> aui_instances;
@@ -92,9 +28,9 @@ namespace AUI
         AUI_Button button_screen5;
         AUI_Text titleText;
         AUI_Text descText;
-        
 
-        public Title_Screen()
+
+        public Screen_Title()
         {
             aui_instances = new List<AUI_Base>();
 
@@ -173,6 +109,7 @@ namespace AUI
 
         public override void Close(ExitAction EA)
         {
+            exitAction = EA;
             displayState = DisplayState.Closing;
             for (i = 0; i < aui_instances.Count; i++)
             { aui_instances[i].Close(); }
@@ -181,7 +118,7 @@ namespace AUI
         public override void Update()
         {
             //update all ui items
-            for(i = 0; i < aui_instances.Count; i++)
+            for (i = 0; i < aui_instances.Count; i++)
             { aui_instances[i].Update(); }
 
             #region Screen Display States
@@ -206,7 +143,7 @@ namespace AUI
                     button_screen1.focused = true;
                     //check for new left click
                     if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Reload); }
+                    { Close(ExitAction.Example1); }
                 }
                 else { button_screen1.focused = false; }
 
@@ -221,7 +158,7 @@ namespace AUI
                     button_screen2.focused = true;
                     //check for new left click
                     if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Reload); }
+                    { Close(ExitAction.Example1); }
                 }
                 else { button_screen2.focused = false; }
 
@@ -236,7 +173,7 @@ namespace AUI
                     button_screen3.focused = true;
                     //check for new left click
                     if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Reload); }
+                    { Close(ExitAction.Example1); }
                 }
                 else { button_screen3.focused = false; }
 
@@ -251,7 +188,7 @@ namespace AUI
                     button_screen4.focused = true;
                     //check for new left click
                     if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Reload); }
+                    { Close(ExitAction.Example1); }
                 }
                 else { button_screen4.focused = false; }
 
@@ -266,7 +203,7 @@ namespace AUI
                     button_screen5.focused = true;
                     //check for new left click
                     if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Reload); }
+                    { Close(ExitAction.Example1); }
                 }
                 else { button_screen5.focused = false; }
 
@@ -286,10 +223,10 @@ namespace AUI
             }
             else if (displayState == DisplayState.Closed)
             {
-                if (exitAction == ExitAction.Reload)
-                { ScreenManager.ExitAndLoad(new Title_Screen()); }
-                //anything else case:
-                //else { ScreenManager.ExitAndLoad(new Title_Screen()); }
+                if (exitAction == ExitAction.Title)
+                { ScreenManager.ExitAndLoad(new Screen_Title()); }
+                else if (exitAction == ExitAction.Example1)
+                { ScreenManager.ExitAndLoad(new Screen_Example1()); }
             }
 
             #endregion
@@ -304,4 +241,5 @@ namespace AUI
         }
 
     }
+
 }

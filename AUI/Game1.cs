@@ -36,7 +36,7 @@ namespace AUI
         {   //spritebatch becomes available here
             Assets.SB = new SpriteBatch(GraphicsDevice);
             Assets.Load();
-            ScreenManager.AddScreen(new Title_Screen());
+            ScreenManager.AddScreen(new Screen_Title());
         }
 
         protected override void UnloadContent() { }
