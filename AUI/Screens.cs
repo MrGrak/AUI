@@ -83,13 +83,19 @@ namespace AUI
 
     public class Title_Screen : Screen
     {
+        int i;
+        public List<AUI_Base> aui_instances;
         AUI_Button button_test;
+
 
         public Title_Screen()
         {
+            aui_instances = new List<AUI_Base>();
+
             button_test = new AUI_Button(
                 16 * 5, 16 * 5, 16 * 5, "test");
             button_test.CenterText();
+            aui_instances.Add(button_test);
         }
 
         public override void Open()
@@ -106,8 +112,11 @@ namespace AUI
 
         public override void Update()
         {
-            button_test.Update();
+            //update all ui items
+            for(i = 0; i < aui_instances.Count; i++)
+            { aui_instances[i].Update(); }
 
+            #region Screen Display States
 
             if (displayState == DisplayState.Opening)
             {
@@ -125,8 +134,7 @@ namespace AUI
                 if (Functions.Contains(
                     button_test.window.rec_bkg.openedRec,
                     Input.cursorPos.X, Input.cursorPos.Y))
-                {
-                    //give button focus
+                {   //give button focus
                     button_test.focused = true;
                     //check for new left click
                     if (Input.IsLeftMouseBtnPress())
@@ -154,13 +162,18 @@ namespace AUI
                 if (exitAction == ExitAction.Reload)
                 { ScreenManager.ExitAndLoad(new Title_Screen()); }
                 //anything else case:
-                //else { ScreenManager.ExitAndLoad(Screens.Board); }
+                //else { ScreenManager.ExitAndLoad(new Title_Screen()); }
             }
+
+            #endregion
+
         }
 
         public override void Draw()
         {
-            button_test.Draw();
+            //draw all ui items
+            for (i = 0; i < aui_instances.Count; i++)
+            { aui_instances[i].Draw(); }
         }
 
     }
