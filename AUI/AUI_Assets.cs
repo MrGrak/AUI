@@ -48,6 +48,45 @@ namespace AUI
         }
     }
 
+    public static class Input
+    {   //there can only be 1 keyboard input at a time
+        public static KeyboardState currentKeyboardState = new KeyboardState();
+        public static KeyboardState lastKeyboardState = new KeyboardState();
+        public static MouseState currentMouseState = new MouseState();
+        public static MouseState lastMouseState = new MouseState();
+        //all ui checks against cursorPos
+        public static Vector2 cursorPos = new Vector2(0, 0);
+        //^ makes collision checking much easier to do
+        public static void Update()
+        {   //store the last input state
+            lastKeyboardState = currentKeyboardState;
+            lastMouseState = currentMouseState;
+            //get the current input states + cursor position
+            currentKeyboardState = Keyboard.GetState();
+            currentMouseState = Mouse.GetState();
+            cursorPos.X = currentMouseState.X;
+            cursorPos.Y = currentMouseState.Y;
+        }
+
+        public static bool IsLeftMouseBtnPress()
+        {   //check to see if L mouse button was pressed
+            return (currentMouseState.LeftButton == ButtonState.Pressed &&
+                    lastMouseState.LeftButton == ButtonState.Released);
+        }
+
+        public static bool IsRightMouseBtnPress()
+        {   //check to see if L mouse button was pressed
+            return (currentMouseState.RightButton == ButtonState.Pressed &&
+                    lastMouseState.RightButton == ButtonState.Released);
+        }
+
+        public static bool IsNewKeyPress(Keys key)
+        {
+            return (currentKeyboardState.IsKeyDown(key)
+                && lastKeyboardState.IsKeyUp(key));
+        }
+    }
+
     public class Int4
     {   //used to draw, animate, and collision check ui
         public int X, Y, W, H = 0;

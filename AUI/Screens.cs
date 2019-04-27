@@ -60,7 +60,6 @@ namespace AUI
 
         public static void Update()
         {
-            //Input.Update();
             if (screens.Count > 0)
             {   //the only 'active screen' is the last one (top one)
                 activeScreen = screens[screens.Count - 1];
@@ -85,8 +84,6 @@ namespace AUI
     public class Title_Screen : Screen
     {
         AUI_Button button_test;
-        MouseState currentMouseState = new MouseState();
-        MouseState lastMouseState = new MouseState();
 
         public Title_Screen()
         {
@@ -109,8 +106,6 @@ namespace AUI
 
         public override void Update()
         {
-            lastMouseState = currentMouseState;
-            currentMouseState = Mouse.GetState();
             button_test.Update();
 
 
@@ -129,13 +124,12 @@ namespace AUI
 
                 if (Functions.Contains(
                     button_test.window.rec_bkg.openedRec,
-                    currentMouseState.X, currentMouseState.Y))
+                    Input.cursorPos.X, Input.cursorPos.Y))
                 {
                     //give button focus
                     button_test.focused = true;
                     //check for new left click
-                    if (currentMouseState.LeftButton == ButtonState.Pressed &&
-                        lastMouseState.LeftButton == ButtonState.Released)
+                    if (Input.IsLeftMouseBtnPress())
                     {
                         button_test.text.ChangeText(
                             "button test passed");

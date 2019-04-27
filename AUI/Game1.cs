@@ -43,6 +43,7 @@ namespace AUI
 
         protected override void Update(GameTime gameTime)
         {
+            Input.Update();
             ScreenManager.Update();
             base.Update(gameTime);
         }
