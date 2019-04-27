@@ -104,27 +104,12 @@ namespace AUI
 
         //
 
-        int offset;
         public void MoveTo(int X, int Y)
         {
-            offset = 0;
-
-            //collect the offset from open/closed recs
-
-
-            offset = openedRec.X - openingRec.X;
-            openingRec.X = X + offset;
-            offset = openedRec.Y - openingRec.Y;
-            openingRec.Y = Y + offset;
-
-
-            offset = openedRec.X - closedRec.X;
-            closedRec.X = X + offset + 16;
-            offset = openedRec.Y - closedRec.Y;
-            closedRec.Y = Y + offset;
-
-            //opened state
+            //set all to pos
             openedRec.X = X; openedRec.Y = Y;
+            closedRec.X = X; closedRec.Y = Y;
+            openingRec.X = X; openingRec.Y = Y;
             //assume fn called prior to open(), drawrec to opening rec
             drawRec.X = openingRec.X; drawRec.Y = openingRec.Y;
         }

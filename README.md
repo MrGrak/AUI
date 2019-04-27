@@ -1,2 +1,6 @@
-# AUI
-Animated User Interface library for Monogame
+# AUI  
+
+An Animated User Interface library for Monogame  
+
+
+![](https://github.com/MrGrak/AUI/blob/master/Imgs/aui_001.gif)  

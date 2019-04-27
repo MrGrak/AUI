@@ -48,6 +48,7 @@
     <Compile Include="AUI_Rectangle.cs" />
     <Compile Include="AUI_Text.cs" />
     <Compile Include="AUI_Window.cs" />
+    <Compile Include="AUI_ButtonWithLine.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
