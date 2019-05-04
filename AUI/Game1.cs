@@ -25,6 +25,9 @@ namespace AUI
             Assets.GDM = Graphics;
             Assets.CM = Content;
             IsMouseVisible = true;
+
+            Graphics.PreferredBackBufferWidth = 800;
+            Graphics.PreferredBackBufferHeight = 500;
         }
 
         protected override void Initialize()

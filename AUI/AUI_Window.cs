@@ -14,14 +14,14 @@ using System.Diagnostics;
 
 namespace AUI
 {
-    public class UI_Window : AUI_Base
+    public class AUI_Window : AUI_Base
     {
         public AUI_Rectangle rec_bkg;
         public AUI_Rectangle rec_fore;
         public int openWait = 2, openCounter;
         public int closeWait = 2, closeCounter;
 
-        public UI_Window(int X, int Y, int W, int H)
+        public AUI_Window(int X, int Y, int W, int H)
         {
             rec_bkg = new AUI_Rectangle(
                 X, Y, W, H, RecAnimType.WipeRight);

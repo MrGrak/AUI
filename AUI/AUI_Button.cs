@@ -17,7 +17,7 @@ namespace AUI
 
     public class AUI_Button : AUI_Base
     {
-        public UI_Window window;
+        public AUI_Window window;
         public AUI_Text text;
 
         public Boolean focused = false;
@@ -33,7 +33,7 @@ namespace AUI
             color_over_text = Assets.OverColor;
             color_normal_text = Assets.TextColor;
 
-            window = new UI_Window(X, Y, W, 16);
+            window = new AUI_Window(X, Y, W, 16);
             window.rec_bkg.color = color_normal;
             window.rec_fore.color = Assets.BackgroundColor;
             text = new AUI_Text(Text,

@@ -46,6 +46,7 @@
     <Compile Include="AUI_Line.cs" />
     <Compile Include="AUI_LineWithRecs.cs" />
     <Compile Include="AUI_Rectangle.cs" />
+    <Compile Include="AUI_Slider_Horizontal.cs" />
     <Compile Include="AUI_Text.cs" />
     <Compile Include="AUI_Window.cs" />
     <Compile Include="AUI_ButtonWithLine.cs" />

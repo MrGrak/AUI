@@ -34,6 +34,7 @@ namespace AUI
         AUI_ButtonWithLine button_crown_child6;
         Boolean childOpen = false; //reps child state open/closed
 
+
         public Screen_Example1()
         {
             aui_instances = new List<AUI_Base>();
@@ -77,6 +78,17 @@ namespace AUI
 
             PlaceChildren();
             CloseCrownChildren();
+
+            //add some sliders for testing
+            for(int g = 0; g < 5; g++)
+            {
+                AUI_Slider_Horizontal slider =
+                    new AUI_Slider_Horizontal(16 * 6, (16 * 7) + (g * 40));
+                slider.Open(g * 0.2f);
+                //make the last few sliders display as float (not percentage)
+                if (g > 2) { slider.valueType = SliderValueType.Float; }
+                aui_instances.Add(slider);
+            }
         }
 
         public override void Open()
@@ -151,6 +163,12 @@ namespace AUI
                     }
                 }
                 else { button_crown_base.focused = false; }
+
+                #endregion
+
+                #region Slider Interactions
+
+                //nothing, in class
 
                 #endregion
 
