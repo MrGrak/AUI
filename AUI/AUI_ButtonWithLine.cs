@@ -32,7 +32,6 @@ namespace AUI
         public override void Close()
         {
             button.Close(); line.Close();
-
         }
 
         public override void Update()

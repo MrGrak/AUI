@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AUI_Base.cs" />
     <Compile Include="AUI_Button.cs" />
+    <Compile Include="AUI_CrownButton.cs" />
     <Compile Include="AUI_Line.cs" />
     <Compile Include="AUI_LineWithRecs.cs" />
     <Compile Include="AUI_Rectangle.cs" />

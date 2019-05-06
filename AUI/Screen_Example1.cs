@@ -22,17 +22,6 @@ namespace AUI
     {
         public List<AUI_Base> aui_instances;
         AUI_Button button_back;
-        AUI_Button button_crown_base;
-
-        public List<AUI_ButtonWithLine> aui_crown_children;
-        AUI_ButtonWithLine button_crown_child1;
-        AUI_ButtonWithLine button_crown_child2;
-        AUI_ButtonWithLine button_crown_child3;
-        AUI_ButtonWithLine button_crown_child4;
-        AUI_ButtonWithLine button_crown_child5;
-        AUI_ButtonWithLine button_crown_child6;
-        Boolean childOpen = false; //reps child state open/closed
-
 
         public Screen_Example1()
         {
@@ -43,49 +32,24 @@ namespace AUI
             button_back.CenterText();
             aui_instances.Add(button_back);
 
-            //setup crown button
-            button_crown_base = new AUI_Button(
-                16 * 18, 16 * 22, 16 * 12, "crown button");
-            button_crown_base.CenterText();
-            aui_instances.Add(button_crown_base);
+            //add some crown buttons for testing
+            for (int g = 0; g < 5; g++)
+            {
+                AUI_CrownButton crown = new AUI_CrownButton(
+                    16 * 6 + (g * 120), //x
+                    (16 * 22),  //y
+                    16 * 8,  //width
+                    "test " + g); //title
 
-            //setup crown children
-            aui_crown_children = new List<AUI_ButtonWithLine>();
-            button_crown_child1 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test a");
-            button_crown_child1.line.line.animType = LineAnimType.Reverse;
-            button_crown_child1.button.draggable = true;
-            aui_crown_children.Add(button_crown_child1);
-            
-            button_crown_child2 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test b");
-            button_crown_child2.line.line.animType = LineAnimType.Reverse;
-            button_crown_child2.button.draggable = true;
-            aui_crown_children.Add(button_crown_child2);
+                //animate kids, except last one
+                crown.wiggleChildren = true;
+                if (g == 5) { crown.wiggleChildren = false; }
+                aui_instances.Add(crown);
+            }
 
-            button_crown_child3 = new AUI_ButtonWithLine(0, 0, 16 * 8, "test c");
-            button_crown_child3.line.line.animType = LineAnimType.Reverse;
-            button_crown_child3.button.draggable = true;
-            aui_crown_children.Add(button_crown_child3);
-
-            button_crown_child4 = new AUI_ButtonWithLine(0, 0, 16 * 7, "test d");
-            button_crown_child4.line.line.animType = LineAnimType.Reverse;
-            button_crown_child4.button.draggable = true;
-            aui_crown_children.Add(button_crown_child4);
-
-            button_crown_child5 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test e");
-            button_crown_child5.line.line.animType = LineAnimType.Reverse;
-            button_crown_child5.button.draggable = true;
-            aui_crown_children.Add(button_crown_child5);
-
-            button_crown_child6 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test f");
-            button_crown_child6.line.line.animType = LineAnimType.Reverse;
-            button_crown_child6.button.draggable = true;
-            aui_crown_children.Add(button_crown_child6);
-
-            PlaceChildren();
-            CloseCrownChildren();
 
             //add some sliders for testing
-            for(int g = 0; g < 5; g++)
+            for (int g = 0; g < 5; g++)
             {
                 AUI_Slider_Horizontal slider =
                     new AUI_Slider_Horizontal(
@@ -111,9 +75,7 @@ namespace AUI
             displayState = DisplayState.Closing;
             for (i = 0; i < aui_instances.Count; i++)
             { aui_instances[i].Close(); }
-            //close any open children too
-            for (i = 0; i < aui_crown_children.Count; i++)
-            { aui_crown_children[i].Close(); }
+            
         }
 
         public override void Update()
@@ -121,10 +83,6 @@ namespace AUI
             //update all ui items
             for (i = 0; i < aui_instances.Count; i++)
             { aui_instances[i].Update(); }
-            for (i = 0; i < aui_crown_children.Count; i++)
-            { aui_crown_children[i].Update(); }
-            //we can randomly move children around each frame too
-            AnimateChildren();
 
             #region Screen Display States
 
@@ -147,17 +105,6 @@ namespace AUI
                         Input.cursorPos.X, Input.cursorPos.Y))
                     {
                         Close(ExitAction.Title);
-                    }
-                    
-                    //Crown Btn Interaction
-                    if (Functions.Contains(
-                        button_crown_base.window.rec_bkg.openedRec,
-                        Input.cursorPos.X, Input.cursorPos.Y))
-                    {   
-                        //open/close crown's children
-                        if (childOpen == false)
-                        { OpenCrownChildren(); }
-                        else { CloseCrownChildren(); }
                     }
                 }
             }
@@ -187,96 +134,6 @@ namespace AUI
         {   //draw all ui items
             for (i = 0; i < aui_instances.Count; i++)
             { aui_instances[i].Draw(); }
-            for (i = 0; i < aui_crown_children.Count; i++)
-            { aui_crown_children[i].Draw(); }
         }
-
-        //
-
-        public void PlaceChildren()
-        {
-            //place crown ui buttons upon open
-            aui_crown_children[0].button.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X - 16 * 4,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 4);
-            aui_crown_children[0].line.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X,
-                button_crown_base.window.rec_bkg.openedRec.Y);
-            //setup offsets for button line
-            aui_crown_children[0].offsetX = 
-                aui_crown_children[0].button.window.rec_bkg.openedRec.W;
-            aui_crown_children[0].offsetY =
-                aui_crown_children[0].button.window.rec_bkg.openedRec.H;
-
-            aui_crown_children[1].button.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X - 16 * 3,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 6);
-            aui_crown_children[1].line.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 1,
-                button_crown_base.window.rec_bkg.openedRec.Y);
-            //setup offsets for button line
-            aui_crown_children[1].offsetX =
-                aui_crown_children[1].button.window.rec_bkg.openedRec.W;
-            aui_crown_children[1].offsetY =
-                aui_crown_children[1].button.window.rec_bkg.openedRec.H;
-
-            aui_crown_children[2].button.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 2,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 8);
-            aui_crown_children[2].line.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 2,
-                button_crown_base.window.rec_bkg.openedRec.Y);
-
-            aui_crown_children[3].button.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 3,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 6);
-            aui_crown_children[3].line.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 10,
-                button_crown_base.window.rec_bkg.openedRec.Y);
-            //setup offsets for button line
-            aui_crown_children[3].offsetX =
-                aui_crown_children[3].button.window.rec_bkg.openedRec.W;
-            aui_crown_children[3].offsetY =
-                aui_crown_children[3].button.window.rec_bkg.openedRec.H;
-
-
-            aui_crown_children[4].button.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 11,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 6);
-            aui_crown_children[4].line.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 11,
-                button_crown_base.window.rec_bkg.openedRec.Y);
-
-            aui_crown_children[5].button.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 12,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 4);
-            aui_crown_children[5].line.MoveTo(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 12,
-                button_crown_base.window.rec_bkg.openedRec.Y);
-        }
-
-        public void OpenCrownChildren()
-        {   
-            for (i = 0; i < aui_crown_children.Count; i++)
-            { aui_crown_children[i].Open(); }
-            childOpen = true;
-        }
-
-        public void CloseCrownChildren()
-        {
-            for (i = 0; i < aui_crown_children.Count; i++)
-            { aui_crown_children[i].Close(); }
-            childOpen = false;
-        }
-
-        public void AnimateChildren()
-        {
-            for (i = 0; i < aui_crown_children.Count; i++)
-            { aui_crown_children[i].Float(); }
-        }
-        
-
-
     }
-
 }
