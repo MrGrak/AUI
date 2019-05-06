@@ -133,82 +133,44 @@ namespace AUI
             else if (displayState == DisplayState.Opened)
             {
                 //handle main input here
-
-                #region Screen1 Btn Interaction
-
-                if (Functions.Contains(
-                    button_screen1.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_screen1.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Example1); }
+                if (Input.IsLeftMouseBtnPress())
+                {
+                    //button 1
+                    if (Functions.Contains(
+                        button_screen1.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {
+                        Close(ExitAction.Example1);
+                    }
+                    //button 2
+                    if (Functions.Contains(
+                        button_screen2.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {
+                        Close(ExitAction.Example1);
+                    }
+                    //button 3
+                    if (Functions.Contains(
+                        button_screen3.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {
+                        Close(ExitAction.Example1);
+                    }
+                    //button 4
+                    if (Functions.Contains(
+                        button_screen4.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {
+                        Close(ExitAction.Example1);
+                    }
+                    //button 5
+                    if (Functions.Contains(
+                        button_screen5.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {
+                        Close(ExitAction.Example1);
+                    }
                 }
-                else { button_screen1.focused = false; }
-
-                #endregion
-
-                #region Screen2 Btn Interaction
-
-                if (Functions.Contains(
-                    button_screen2.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_screen2.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Example1); }
-                }
-                else { button_screen2.focused = false; }
-
-                #endregion
-
-                #region Screen3 Btn Interaction
-
-                if (Functions.Contains(
-                    button_screen3.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_screen3.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Example1); }
-                }
-                else { button_screen3.focused = false; }
-
-                #endregion
-
-                #region Screen4 Btn Interaction
-
-                if (Functions.Contains(
-                    button_screen4.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_screen4.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Example1); }
-                }
-                else { button_screen4.focused = false; }
-
-                #endregion
-
-                #region Screen5 Btn Interaction
-
-                if (Functions.Contains(
-                    button_screen5.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_screen5.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Example1); }
-                }
-                else { button_screen5.focused = false; }
-
-                #endregion
-
             }
             else if (displayState == DisplayState.Closing)
             {

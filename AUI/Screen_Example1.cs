@@ -130,47 +130,28 @@ namespace AUI
             else if (displayState == DisplayState.Opened)
             {
                 //handle main input here
-
-                #region Back Btn Interaction
-
-                if (Functions.Contains(
-                    button_back.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_back.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Title); }
-                }
-                else { button_back.focused = false; }
-
-                #endregion
-
-                #region Crown Btn Interaction
-
-                if (Functions.Contains(
-                    button_crown_base.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_crown_base.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    {   //open/close crown's children
+                
+                if (Input.IsLeftMouseBtnPress())
+                {
+                    //back button
+                    if (Functions.Contains(
+                        button_back.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {
+                        Close(ExitAction.Title);
+                    }
+                    
+                    //Crown Btn Interaction
+                    if (Functions.Contains(
+                        button_crown_base.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {   
+                        //open/close crown's children
                         if (childOpen == false)
                         { OpenCrownChildren(); }
                         else { CloseCrownChildren(); }
                     }
                 }
-                else { button_crown_base.focused = false; }
-
-                #endregion
-
-                #region Slider Interactions
-
-                //nothing, in class
-
-                #endregion
-
             }
             else if (displayState == DisplayState.Closing)
             {

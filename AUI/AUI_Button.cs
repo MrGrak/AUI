@@ -26,6 +26,9 @@ namespace AUI
         public Color color_over_text;
         public Color color_normal_text;
 
+        public Boolean draggable = true;
+
+
         public AUI_Button(int X, int Y, int W, string Text)
         {
             color_over = Assets.OverColor;
@@ -76,14 +79,39 @@ namespace AUI
                 }
             }
             else if (displayState == DisplayState.Opened)
-            {   //handle user focusing/hovering over button via cursor
-                if (focused)
+            {   
+                //handle user focusing/hovering over button via cursor
+                if (Functions.Contains(
+                    window.rec_bkg.openedRec,
+                    Input.cursorPos.X, Input.cursorPos.Y))
                 {
+
+
                     window.rec_bkg.color = color_over;
                     text.color = color_over_text;
-                    //pulse text alpha if button is opened + focused
+                    //pulse text alpha
                     if (text.alpha >= 1.1f) { text.alpha = 0.7f; }
                     else { text.alpha += 0.01f; }
+
+
+                    //handle dragging
+                    //check for new left click
+                    if (Input.IsLeftMouseBtnPress())
+                    { 
+                        //start dragging state
+                    }
+
+                    if(Input.currentMouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        //follow cursor
+                    }
+
+                    if (Input.currentMouseState.LeftButton == ButtonState.Released)
+                    {
+                        //drop
+                    }
+
+
                 }
                 else
                 {
