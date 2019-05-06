@@ -19,14 +19,14 @@ namespace AUI
     {
         public AUI_Window window;
         public AUI_Text text;
-
-        public Boolean focused = false;
+        
         public Color color_over;
         public Color color_normal;
         public Color color_over_text;
         public Color color_normal_text;
 
-        public Boolean draggable = true;
+        public Boolean draggable = false;
+        public Boolean beingDragged = false;
 
 
         public AUI_Button(int X, int Y, int W, string Text)
@@ -85,38 +85,41 @@ namespace AUI
                     window.rec_bkg.openedRec,
                     Input.cursorPos.X, Input.cursorPos.Y))
                 {
-
-
                     window.rec_bkg.color = color_over;
                     text.color = color_over_text;
                     //pulse text alpha
                     if (text.alpha >= 1.1f) { text.alpha = 0.7f; }
                     else { text.alpha += 0.01f; }
-
-
-                    //handle dragging
-                    //check for new left click
+                    //pickup button
                     if (Input.IsLeftMouseBtnPress())
-                    { 
-                        //start dragging state
+                    {   //check for new left click, start dragging state
+                        if (draggable) { beingDragged = true; }
                     }
-
-                    if(Input.currentMouseState.LeftButton == ButtonState.Pressed)
-                    {
-                        //follow cursor
-                    }
-
-                    if (Input.currentMouseState.LeftButton == ButtonState.Released)
-                    {
-                        //drop
-                    }
-
-
                 }
                 else
                 {
                     window.rec_bkg.color = color_normal;
                     text.color = color_normal_text;
+                }
+
+                //if button was picked up, match cursor's pos
+                if (Input.currentMouseState.LeftButton == ButtonState.Pressed)
+                {
+                    if (draggable & beingDragged)
+                    {
+                        MoveTo(
+                        (int)Input.cursorPos.X - window.rec_bkg.openedRec.W / 2,
+                        (int)Input.cursorPos.Y - window.rec_bkg.openedRec.H / 2);
+                    }
+                }
+                //drop button to screen
+                if (Input.currentMouseState.LeftButton == ButtonState.Released)
+                {
+                    
+                    if (draggable & beingDragged)
+                    {
+                        beingDragged = false;
+                    }
                 }
             }
             else if (displayState == DisplayState.Closing)

@@ -67,22 +67,15 @@ namespace AUI
             else if (displayState == DisplayState.Opened)
             {
                 //handle main input here
-
-                #region Back Btn Interaction
-
-                if (Functions.Contains(
-                    button_back.window.rec_bkg.openedRec,
-                    Input.cursorPos.X, Input.cursorPos.Y))
-                {   //give button focus
-                    button_back.focused = true;
-                    //check for new left click
-                    if (Input.IsLeftMouseBtnPress())
-                    { Close(ExitAction.Title); }
+                if (Input.IsLeftMouseBtnPress())
+                {
+                    if (Functions.Contains(
+                        button_back.window.rec_bkg.openedRec,
+                        Input.cursorPos.X, Input.cursorPos.Y))
+                    {
+                        Close(ExitAction.Title);
+                    }
                 }
-                else { button_back.focused = false; }
-
-                #endregion
-
             }
             else if (displayState == DisplayState.Closing)
             {

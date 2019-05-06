@@ -83,6 +83,7 @@ namespace AUI
             {
                 //if the lines target moves away, we need to chase it
                 if (animLength < length) { animLength++; }
+                else if (animLength > length) { animLength--; }
                 else { animLength = length; }
             }
             else if (displayState == DisplayState.Closing)

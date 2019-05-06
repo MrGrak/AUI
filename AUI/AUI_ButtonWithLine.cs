@@ -33,7 +33,17 @@ namespace AUI
 
         public override void Update()
         {
-            button.Update(); line.Update();
+            button.Update();
+            //match the target to the button each frame
+            line.SetTarget(
+                button.window.rec_bkg.openedRec.X,
+                button.window.rec_bkg.openedRec.Y);
+            //insta match the line's length (bypass animation)
+            if (displayState == DisplayState.Opened)
+            { line.line.animLength = line.line.length; }
+            //else we allow the lines to close
+            line.Update();
+
             //wait for line to complete opening before opening button
             if(line.displayState == DisplayState.Opened)
             { button.Open(); }

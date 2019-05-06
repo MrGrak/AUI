@@ -53,26 +53,32 @@ namespace AUI
             aui_crown_children = new List<AUI_ButtonWithLine>();
             button_crown_child1 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test a");
             button_crown_child1.line.line.animType = LineAnimType.Reverse;
+            button_crown_child1.button.draggable = true;
             aui_crown_children.Add(button_crown_child1);
-
+            
             button_crown_child2 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test b");
             button_crown_child2.line.line.animType = LineAnimType.Reverse;
+            button_crown_child2.button.draggable = true;
             aui_crown_children.Add(button_crown_child2);
 
             button_crown_child3 = new AUI_ButtonWithLine(0, 0, 16 * 8, "test c");
             button_crown_child3.line.line.animType = LineAnimType.Reverse;
+            button_crown_child3.button.draggable = true;
             aui_crown_children.Add(button_crown_child3);
 
             button_crown_child4 = new AUI_ButtonWithLine(0, 0, 16 * 7, "test d");
             button_crown_child4.line.line.animType = LineAnimType.Reverse;
+            button_crown_child4.button.draggable = true;
             aui_crown_children.Add(button_crown_child4);
 
             button_crown_child5 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test e");
             button_crown_child5.line.line.animType = LineAnimType.Reverse;
+            button_crown_child5.button.draggable = true;
             aui_crown_children.Add(button_crown_child5);
 
             button_crown_child6 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test f");
             button_crown_child6.line.line.animType = LineAnimType.Reverse;
+            button_crown_child6.button.draggable = true;
             aui_crown_children.Add(button_crown_child6);
 
             PlaceChildren();
@@ -82,7 +88,9 @@ namespace AUI
             for(int g = 0; g < 5; g++)
             {
                 AUI_Slider_Horizontal slider =
-                    new AUI_Slider_Horizontal(16 * 6, (16 * 7) + (g * 40));
+                    new AUI_Slider_Horizontal(
+                        16 * 6 + (g * 120), 
+                        (16 * 7));
                 slider.Open(g * 0.2f);
                 //make the last few sliders display as float (not percentage)
                 if (g > 2) { slider.valueType = SliderValueType.Float; }
@@ -191,9 +199,6 @@ namespace AUI
             aui_crown_children[0].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X - 16 * 4,
                 button_crown_base.window.rec_bkg.openedRec.Y - 16 * 4);
-            aui_crown_children[0].line.SetTarget(
-                button_crown_base.window.rec_bkg.openedRec.X - 16 * 0,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 3);
             aui_crown_children[0].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X,
                 button_crown_base.window.rec_bkg.openedRec.Y);
@@ -201,9 +206,6 @@ namespace AUI
             aui_crown_children[1].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X - 16 * 3,
                 button_crown_base.window.rec_bkg.openedRec.Y - 16 * 6);
-            aui_crown_children[1].line.SetTarget(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 1,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 5);
             aui_crown_children[1].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 1,
                 button_crown_base.window.rec_bkg.openedRec.Y);
@@ -211,9 +213,6 @@ namespace AUI
             aui_crown_children[2].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 2,
                 button_crown_base.window.rec_bkg.openedRec.Y - 16 * 8);
-            aui_crown_children[2].line.SetTarget(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 2,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 7);
             aui_crown_children[2].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 2,
                 button_crown_base.window.rec_bkg.openedRec.Y);
@@ -221,9 +220,6 @@ namespace AUI
             aui_crown_children[3].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 3,
                 button_crown_base.window.rec_bkg.openedRec.Y - 16 * 6);
-            aui_crown_children[3].line.SetTarget(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 10,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 5);
             aui_crown_children[3].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 10,
                 button_crown_base.window.rec_bkg.openedRec.Y);
@@ -231,9 +227,6 @@ namespace AUI
             aui_crown_children[4].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 11,
                 button_crown_base.window.rec_bkg.openedRec.Y - 16 * 6);
-            aui_crown_children[4].line.SetTarget(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 11,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 5);
             aui_crown_children[4].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 11,
                 button_crown_base.window.rec_bkg.openedRec.Y);
@@ -241,9 +234,6 @@ namespace AUI
             aui_crown_children[5].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 12,
                 button_crown_base.window.rec_bkg.openedRec.Y - 16 * 4);
-            aui_crown_children[5].line.SetTarget(
-                button_crown_base.window.rec_bkg.openedRec.X + 16 * 12,
-                button_crown_base.window.rec_bkg.openedRec.Y - 16 * 3);
             aui_crown_children[5].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 12,
                 button_crown_base.window.rec_bkg.openedRec.Y);

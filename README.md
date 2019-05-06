@@ -5,7 +5,7 @@ An Animated User Interface library for Monogame
 
 ![](https://github.com/MrGrak/AUI/blob/master/Imgs/aui_003.gif)  
 
-
+![](https://github.com/MrGrak/AUI/blob/master/Imgs/aui_004.gif)  
 
 
 ## Overview
