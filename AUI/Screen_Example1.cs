@@ -202,6 +202,11 @@ namespace AUI
             aui_crown_children[0].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X,
                 button_crown_base.window.rec_bkg.openedRec.Y);
+            //setup offsets for button line
+            aui_crown_children[0].offsetX = 
+                aui_crown_children[0].button.window.rec_bkg.openedRec.W;
+            aui_crown_children[0].offsetY =
+                aui_crown_children[0].button.window.rec_bkg.openedRec.H;
 
             aui_crown_children[1].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X - 16 * 3,
@@ -209,6 +214,11 @@ namespace AUI
             aui_crown_children[1].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 1,
                 button_crown_base.window.rec_bkg.openedRec.Y);
+            //setup offsets for button line
+            aui_crown_children[1].offsetX =
+                aui_crown_children[1].button.window.rec_bkg.openedRec.W;
+            aui_crown_children[1].offsetY =
+                aui_crown_children[1].button.window.rec_bkg.openedRec.H;
 
             aui_crown_children[2].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 2,
@@ -223,6 +233,12 @@ namespace AUI
             aui_crown_children[3].line.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 10,
                 button_crown_base.window.rec_bkg.openedRec.Y);
+            //setup offsets for button line
+            aui_crown_children[3].offsetX =
+                aui_crown_children[3].button.window.rec_bkg.openedRec.W;
+            aui_crown_children[3].offsetY =
+                aui_crown_children[3].button.window.rec_bkg.openedRec.H;
+
 
             aui_crown_children[4].button.MoveTo(
                 button_crown_base.window.rec_bkg.openedRec.X + 16 * 11,

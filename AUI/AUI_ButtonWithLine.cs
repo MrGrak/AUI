@@ -13,6 +13,9 @@ namespace AUI
         public float floatX = 0;
         public float floatY = 0;
 
+        public int offsetX = 0;
+        public int offsetY = 0;
+
         public AUI_ButtonWithLine(int X, int Y, int W, string Txt)
         {
             button = new AUI_Button(X, Y, W, Txt);
@@ -36,8 +39,8 @@ namespace AUI
             button.Update();
             //match the target to the button each frame
             line.SetTarget(
-                button.window.rec_bkg.openedRec.X,
-                button.window.rec_bkg.openedRec.Y);
+                button.window.rec_bkg.openedRec.X + offsetX,
+                button.window.rec_bkg.openedRec.Y + offsetY);
             //insta match the line's length (bypass animation)
             if (displayState == DisplayState.Opened)
             { line.line.animLength = line.line.length; }
