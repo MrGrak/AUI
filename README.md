@@ -17,6 +17,11 @@ with - in your game - that is animated and interesting to play with.
 
 
 
+
+
+
+
+
 ## A Brief Introduction To XNA/Monogame
 
 In order to understand why the UI was designed the way it was,
@@ -35,6 +40,12 @@ Close(), Update(), and Draw() methods.
 Also, almost all UI is on the main thread or a dedicated thread,
 so all UI classes were designed to be mutable. Feel free to
 change that however you want to.
+
+
+
+
+
+
 
 
 ## Making a Button
@@ -69,6 +80,7 @@ You can immediately open a ui object upon it's creation,
 or you can create it and then open it later, if you want
 cascading animations of ui opening, or want to delay the
 opening (or closing) of ui objects, for artistic purposes.
+
 
 
 
@@ -129,6 +141,13 @@ for (i = 0; i < 100; i++)
 ```
 
 
+
+
+
+
+
+
+
 ## Advanced Examples
 
 All advanced examples require explaining how fonts and 
@@ -163,6 +182,37 @@ file in the example game project.
 
 To see sliders and animated buttons in action, check out 
 the Screen_Example1.cs file in the example game project.
+
+
+
+
+
+
+
+
+
+## Integrating AUI into your Codebase
+
+In theory, AUI is not limited to Monogame or XNA, and could be
+used in other C# codebases, if the expected requirements are fullfilled. 
+
+First, AUI needs to have access to the font it uses to draw text on screen. 
+This is a spriteFont, a texture that contains text characters.
+
+> You will have to add the AUI font to your content project and load it into your game, then pass it to the AUI font field, in order to use this library to work in your game or application. This font field is located in the file AUI_Assets, and is named Assets.font. You will need to load the pixel font file into your content manager like so, in XNA/Monogame:
+```csharp
+Assets.font = ContentManager.Load<SpriteFont>("pixelFont");
+```
+
+Second, AUI objects need to interacted with using their Open(), Close(), Update(), and Draw() methods. Where that update and draw call comes from, is up to the developers.
+
+
+
+
+
+
+
+
 
 
 
