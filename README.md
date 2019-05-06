@@ -7,16 +7,17 @@ An Animated User Interface library for Monogame
 
 
 
-## Goals
 
-To be an animated user interface library that is user facing.
+## Overview
+
+AUI is a set of ui classes designed to work with XNA and Monogame. 
 This library is not meant to replace winforms or other backend
 ui libraries. This is a frontend ui library that users interact
-with in your game, that is animated and interesting to play with.
+with - in your game - that is animated and interesting to play with.
 
 
 
-## A Brief Introduction/Overview
+## A Brief Introduction To XNA/Monogame
 
 In order to understand why the UI was designed the way it was,
 I will first need to explain how xna/monogame works, a bit.
@@ -31,6 +32,9 @@ method. All AUI objects inherit from the abstract base class,
 which forces all AUI objects to implement their own Open(),
 Close(), Update(), and Draw() methods.
 
+Also, almost all UI is on the main thread or a dedicated thread,
+so all UI classes were designed to be mutable. Feel free to
+change that however you want to.
 
 
 ## Making a Button
@@ -84,8 +88,8 @@ List<AUI_Base> aui_instances = new List<AUI_Base>();
 for (i = 0; i < 500; i++)
 { 
 	AUI_Button button_example = new AUI_Button(
-	16 * 3, 10 + i * 16,	//x, y pos on screen
-	16 * 3, "example");		//width, text displayed
+	16 * 3, 10 + i * 16, //x, y pos on screen
+	16 * 3, "example"); //width, text displayed
 	aui_instances.Add(button_example);
 }
 
@@ -116,9 +120,9 @@ to create them and add them to the AUI instances list.
 for (i = 0; i < 100; i++)
 { 
 	AUI_Text text_example = new AUI_Text(
-	"example",		//string to draw
-	16 * 8, 16 * i,	//x, y pos	
-	Color.Blue);	//color
+	"example", //string to draw
+	16 * 8, 16 * i, //x, y pos	
+	Color.Blue); //color
     aui_instances.Add(text_example);
 }
 
@@ -163,7 +167,29 @@ the Screen_Example1.cs file in the example game project.
 
 
 
+## License
 
+Mit License
+
+Copyright (c) 2019 GarrickCampsey
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 
 
