@@ -20,7 +20,6 @@ namespace AUI
     //this screen shows off the crown button
     public class Screen_Example1 : Screen
     {
-        int i;
         public List<AUI_Base> aui_instances;
         AUI_Button button_back;
         AUI_Button button_crown_base;
