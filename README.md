@@ -84,9 +84,9 @@ List<AUI_Base> aui_instances = new List<AUI_Base>();
 for (i = 0; i < 500; i++)
 { 
 	AUI_Button button_example = new AUI_Button(
-	16 * 3, 10 + i * 16,  //x, y pos on screen
-	16 * 3, "example");  //width, text displayed
-    aui_instances.Add(button_example);
+	16 * 3, 10 + i * 16,	//x, y pos on screen
+	16 * 3, "example");		//width, text displayed
+	aui_instances.Add(button_example);
 }
 
 //2. open the ui instances from an open()	
@@ -116,9 +116,9 @@ to create them and add them to the AUI instances list.
 for (i = 0; i < 100; i++)
 { 
 	AUI_Text text_example = new AUI_Text(
-		"example",		//string to draw
-		16 * 8, 16 * i, //x, y pos	
-		Color.Blue);	//color
+	"example",		//string to draw
+	16 * 8, 16 * i,	//x, y pos	
+	Color.Blue);	//color
     aui_instances.Add(text_example);
 }
 
