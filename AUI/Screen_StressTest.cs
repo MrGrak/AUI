@@ -42,8 +42,6 @@ namespace AUI
                 Microsoft.Xna.Framework.Color.White);
             aui_instances.Add(timer_text);
 
-
-
             int g = 0; //counter/id
             for (int x = 0; x < 28; x++)
             {
@@ -60,9 +58,6 @@ namespace AUI
                     g++;
                 }
             }
-
-
-
         }
 
         public override void Open()
