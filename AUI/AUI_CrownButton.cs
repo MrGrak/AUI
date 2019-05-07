@@ -173,9 +173,6 @@ namespace AUI
             aui_crown_children[2].offsetY =
                 aui_crown_children[2].button.window.rec_bkg.openedRec.H;
 
-
-
-
             //right half
             aui_crown_children[3].button.MoveTo(
                 button.window.rec_bkg.openedRec.X +

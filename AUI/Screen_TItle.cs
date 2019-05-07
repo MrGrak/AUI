@@ -35,12 +35,12 @@ namespace AUI
             aui_instances = new List<AUI_Base>();
 
             button_screen1 = new AUI_Button(
-                16 * 8, 16 * 20, 16 * 5, "example 1");
+                16 * 8, 16 * 20, 16 * 5, "crown example");
             button_screen1.CenterText();
             aui_instances.Add(button_screen1);
 
             button_screen2 = new AUI_Button(
-                16 * 15, 16 * 20, 16 * 5, "example 2");
+                16 * 15, 16 * 20, 16 * 5, "stress test");
             button_screen2.CenterText();
             aui_instances.Add(button_screen2);
 
@@ -147,7 +147,7 @@ namespace AUI
                         button_screen2.window.rec_bkg.openedRec,
                         Input.cursorPos.X, Input.cursorPos.Y))
                     {
-                        Close(ExitAction.Example1);
+                        Close(ExitAction.StressTest);
                     }
                     //button 3
                     if (Functions.Contains(
@@ -189,6 +189,8 @@ namespace AUI
                 { ScreenManager.ExitAndLoad(new Screen_Title()); }
                 else if (exitAction == ExitAction.Example1)
                 { ScreenManager.ExitAndLoad(new Screen_Example1()); }
+                else if (exitAction == ExitAction.StressTest)
+                { ScreenManager.ExitAndLoad(new Screen_StressTest()); }
             }
 
             #endregion
