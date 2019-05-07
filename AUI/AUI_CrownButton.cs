@@ -40,12 +40,12 @@ namespace AUI
             button_crown_child2.button.draggable = true;
             aui_crown_children.Add(button_crown_child2);
 
-            button_crown_child3 = new AUI_ButtonWithLine(0, 0, 16 * 8, "test c");
+            button_crown_child3 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test c");
             button_crown_child3.line.line.animType = LineAnimType.Reverse;
             button_crown_child3.button.draggable = true;
             aui_crown_children.Add(button_crown_child3);
 
-            button_crown_child4 = new AUI_ButtonWithLine(0, 0, 16 * 7, "test d");
+            button_crown_child4 = new AUI_ButtonWithLine(0, 0, 16 * 4, "test d");
             button_crown_child4.line.line.animType = LineAnimType.Reverse;
             button_crown_child4.button.draggable = true;
             aui_crown_children.Add(button_crown_child4);
@@ -136,7 +136,7 @@ namespace AUI
 
         public void PlaceChildren()
         {
-            //place crown ui buttons upon open
+            //left half
             aui_crown_children[0].button.MoveTo(
                 button.window.rec_bkg.openedRec.X - 16 * 4,
                 button.window.rec_bkg.openedRec.Y - 16 * 4);
@@ -162,39 +162,46 @@ namespace AUI
                 aui_crown_children[1].button.window.rec_bkg.openedRec.H;
 
             aui_crown_children[2].button.MoveTo(
-                button.window.rec_bkg.openedRec.X + 16 * 2,
+                button.window.rec_bkg.openedRec.X - 16 * 2,
                 button.window.rec_bkg.openedRec.Y - 16 * 8);
             aui_crown_children[2].line.MoveTo(
                 button.window.rec_bkg.openedRec.X + 16 * 2,
                 button.window.rec_bkg.openedRec.Y);
-
-
-
-            aui_crown_children[3].button.MoveTo(
-                button.window.rec_bkg.openedRec.X + 16 * 3,
-                button.window.rec_bkg.openedRec.Y - 16 * 6);
-            aui_crown_children[3].line.MoveTo(
-                button.window.rec_bkg.openedRec.X + 16 * 6,
-                button.window.rec_bkg.openedRec.Y);
             //setup offsets for button line
-            aui_crown_children[3].offsetX =
-                aui_crown_children[3].button.window.rec_bkg.openedRec.W;
-            aui_crown_children[3].offsetY =
-                aui_crown_children[3].button.window.rec_bkg.openedRec.H;
+            aui_crown_children[2].offsetX =
+                aui_crown_children[2].button.window.rec_bkg.openedRec.W;
+            aui_crown_children[2].offsetY =
+                aui_crown_children[2].button.window.rec_bkg.openedRec.H;
 
+
+
+
+            //right half
+            aui_crown_children[3].button.MoveTo(
+                button.window.rec_bkg.openedRec.X +
+                    button.window.rec_bkg.openedRec.W - 16 * 2,
+                button.window.rec_bkg.openedRec.Y - 16 * 8);
+            aui_crown_children[3].line.MoveTo(
+                button.window.rec_bkg.openedRec.X +
+                    button.window.rec_bkg.openedRec.W - 16 * 2,
+                button.window.rec_bkg.openedRec.Y);
 
             aui_crown_children[4].button.MoveTo(
-                button.window.rec_bkg.openedRec.X + 16 * 11,
+                button.window.rec_bkg.openedRec.X +
+                    button.window.rec_bkg.openedRec.W - 16 * 1,
                 button.window.rec_bkg.openedRec.Y - 16 * 6);
             aui_crown_children[4].line.MoveTo(
-                button.window.rec_bkg.openedRec.X + 16 * 7,
+                button.window.rec_bkg.openedRec.X +
+                    button.window.rec_bkg.openedRec.W - 16 * 1,
                 button.window.rec_bkg.openedRec.Y);
 
             aui_crown_children[5].button.MoveTo(
-                button.window.rec_bkg.openedRec.X + 16 * 12,
+                button.window.rec_bkg.openedRec.X +
+                    button.window.rec_bkg.openedRec.W,
                 button.window.rec_bkg.openedRec.Y - 16 * 4);
             aui_crown_children[5].line.MoveTo(
-                button.window.rec_bkg.openedRec.X + 16 * 8,
+                button.window.rec_bkg.openedRec.X +
+                    button.window.rec_bkg.openedRec.W,
                 button.window.rec_bkg.openedRec.Y);
         }
 

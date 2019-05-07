@@ -38,7 +38,7 @@ namespace AUI
                 AUI_CrownButton crown = new AUI_CrownButton(
                     16 * 6 + (g * 120), //x
                     (16 * 22),  //y
-                    16 * 8,  //width
+                    16 * 2 + 16 * g,  //width
                     "test " + g); //title
 
                 //animate kids, except last one
