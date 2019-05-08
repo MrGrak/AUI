@@ -32,6 +32,9 @@ namespace AUI
         public int speedOpen = 15, speedClosed = 15, i;
         public LineAnimType animType = LineAnimType.WipeRight;
         public float alpha = 1.0f;
+        public float zDepth = Assets.Layer_Lines; //draw over windows/recs
+
+
 
         public AUI_Line() { Xa = Ya = Xb = Yb = 0; }
 
@@ -134,9 +137,9 @@ namespace AUI
                 texRec, //texture rec
                 color, //at 100% alpha
                 angle,
-                texOrigin, //wat is this Vector2 origin parameter?
+                texOrigin, 
                 SpriteEffects.None,
-                Assets.Layer_0
+                zDepth
             );
         }
 

@@ -36,9 +36,12 @@ namespace AUI
         public static SpriteFont font;
 
         public static float Layer_0 = 0.999990f; //furthest 'back'
-        public static float Layer_1 = 0.999989f;
-        public static float Layer_2 = 0.999988f;
-        public static float Layer_3 = 0.999987f;
+        public static float Layer_Lines = 0.999980f;
+        public static float Layer_WindowBack = 0.999970f;
+        public static float Layer_WindowFront = 0.999960f;
+        public static float Layer_Text = 0.999950f;
+
+
 
         public static void Load()
         {

@@ -34,6 +34,10 @@ namespace AUI
         public Rectangle drawRec = new Rectangle(); //drawn to screen
         public int speedOpen = 15, speedClosed = 15, i;
         public float alpha = 1.0f;
+        public float zDepth = Assets.Layer_WindowBack; //draw over windows/recs
+        public Vector2 texOrigin = new Vector2(0, 0);
+        Rectangle texRec = new Rectangle(0, 0, 1, 1); //tex rec
+
 
         public AUI_Rectangle(int X, int Y, int W, int H, RecAnimType Type)
         {
@@ -99,7 +103,17 @@ namespace AUI
 
         public override void Draw()
         {
-            Assets.SB.Draw(Assets.recTex, drawRec, color * alpha);
+            //zDepth
+            Assets.SB.Draw(
+                Assets.recTex,
+                drawRec, //draw rec
+                texRec, //texture rec
+                color, //at 100% alpha
+                0.0f,
+                texOrigin,
+                SpriteEffects.None,
+                zDepth
+            );
         }
 
         //

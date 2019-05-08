@@ -27,7 +27,7 @@ namespace AUI
         public float alpha = 1.0f;
         public float rotation = 0.0f;
         public float scale = 1.0f;
-        public float zDepth = Assets.Layer_3; //draw over recs
+        public float zDepth = Assets.Layer_Text; //draw over windows/recs
         public int speedOpen = 2; //chars per frame
         public float speedClosed = 0.2f; //alpha fade out per frame
         public Int4 hitbox = new Int4();

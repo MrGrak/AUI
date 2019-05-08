@@ -23,9 +23,7 @@ namespace AUI
         int i;
         public List<AUI_Base> aui_instances;
         AUI_Button button_back;
-
-        AUI_SpiderQueenButton spiderQueen;
-
+        
 
 
 
@@ -38,11 +36,21 @@ namespace AUI
             button_back.CenterText();
             aui_instances.Add(button_back);
 
-            //create test spider button
-            spiderQueen = new AUI_SpiderQueenButton(
-                16 * 10, 16 * 10,
-                "queen");
-            aui_instances.Add(spiderQueen);
+
+            for(int x = 0; x < 9; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    //create test spider button
+                    AUI_SpiderQueenButton spiderQueen =
+                        new AUI_SpiderQueenButton(
+                            16 * 5 + ((16 * 4 + 6) * x),
+                            16 * 12 + (16 * 4 * y), 
+                            "test");
+                    aui_instances.Add(spiderQueen);
+                }
+            }
+            
         }
 
         public override void Open()
@@ -114,7 +122,9 @@ namespace AUI
         {
             //draw all ui items
             for (i = 0; i < aui_instances.Count; i++)
-            { aui_instances[i].Draw(); }
+            {
+                aui_instances[i].Draw();
+            }
         }
 
     }
