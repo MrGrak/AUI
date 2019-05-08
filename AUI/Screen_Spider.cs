@@ -36,21 +36,38 @@ namespace AUI
             button_back.CenterText();
             aui_instances.Add(button_back);
 
-
+            
             for(int x = 0; x < 9; x++)
             {
-                for (int y = 0; y < 3; y++)
+                for (int y = 0; y < 1; y++)
                 {
                     //create test spider button
                     AUI_SpiderQueenButton spiderQueen =
                         new AUI_SpiderQueenButton(
                             16 * 5 + ((16 * 4 + 6) * x),
-                            16 * 12 + (16 * 4 * y), 
-                            "test");
+                            16 * 17 + (16 * 4 * y), 
+                            "test", aui_instances);
                     aui_instances.Add(spiderQueen);
                 }
             }
-            
+
+            /*
+            //single
+            AUI_SpiderQueenButton test =
+                new AUI_SpiderQueenButton(
+                16 * 5, 16 * 12, "test", aui_instances);
+            aui_instances.Add(test);
+            */
+
+            AUI_LineWithRecs line0 = new AUI_LineWithRecs();
+            line0.MoveTo(16 * 5, 16 * 15);
+            line0.SetTarget(16 * 45, 16 * 15);
+            aui_instances.Add(line0);
+
+            AUI_LineWithRecs line1 = new AUI_LineWithRecs();
+            line1.MoveTo(16 * 5, 16 * 20);
+            line1.SetTarget(16 * 45, 16 * 20);
+            aui_instances.Add(line1);
         }
 
         public override void Open()
@@ -88,6 +105,12 @@ namespace AUI
                 //handle main input here
                 if (Input.IsLeftMouseBtnPress())
                 {
+                    //dump the list count for debugging
+                    Debug.WriteLine(
+                        "aui instances: " +
+                        aui_instances.Count);
+                    //this allows verification of baby removal
+
                     if (Functions.Contains(
                         button_back.window.rec_bkg.openedRec,
                         Input.cursorPos.X, Input.cursorPos.Y))

@@ -30,7 +30,7 @@ namespace AUI
         //when clicked on, it spawns a baby spider
         //and moves around for awhile
         public Boolean wandering = false;
-        public int wanderTotal = 70;
+        public int wanderTotal = 60;
         public int wanderCounter = 0;
         
         //setup way to move button in a direction
@@ -38,10 +38,11 @@ namespace AUI
         public float friction = 0.96f;
         public byte movement = 4;
 
+        List<AUI_Base> ListRef;
+        int babyCounter = 0;
 
-
-
-        public AUI_SpiderQueenButton(int X, int Y, String Text)
+        public AUI_SpiderQueenButton(int X, int Y, 
+            String Text, List<AUI_Base> LR)
         {
             button = new AUI_Button(X, Y, 16 * 4, Text);
             button.CenterText();
@@ -55,6 +56,7 @@ namespace AUI
                 lines.Add(line);
             }
             displayState = DisplayState.Closed;
+            ListRef = LR;
         }
 
         public override void Open()
@@ -76,12 +78,9 @@ namespace AUI
             button.Update();
             for (i = 0; i < 8; i++) { lines[i].Update(); }
 
-
             //miniphysics: apply friction to magnitude per axis
             magnitude.X = magnitude.X * friction;
             magnitude.Y = magnitude.Y * friction;
-
-
 
             //display states
             if (displayState == DisplayState.Opening)
@@ -108,6 +107,8 @@ namespace AUI
                             wandering = true;
                             ChooseDirection();
                         }
+                        //spawn a child as feedback
+                        SpawnChildren();
                     }
                 }
 
@@ -152,7 +153,7 @@ namespace AUI
 
 
             
-            //place legs onto button (after button has moved)
+            //work that happens when button isn't closed
             if (displayState != DisplayState.Closed)
             {
 
@@ -186,7 +187,6 @@ namespace AUI
                     button.window.rec_bkg.openedRec.Y + 16);
                 #endregion
 
-
                 #region Place legs away from body like spider
 
                 //top of button
@@ -218,6 +218,7 @@ namespace AUI
 
                 #endregion
 
+                #region leg animation routine
 
                 if(wandering)
                 {
@@ -234,6 +235,9 @@ namespace AUI
                         lines[i].zDepth = Assets.Layer_WindowFront;
                     }
                 }
+
+                #endregion
+
                 else
                 {   //set button and lines on lower layers (behind)
                     button.window.rec_bkg.zDepth = Assets.Layer_WindowBack;
@@ -243,6 +247,20 @@ namespace AUI
                         lines[i].zDepth = Assets.Layer_Lines;
                     }
                 }
+
+                #region Keep button onscreen (push back to center)
+
+                if (button.window.rec_bkg.openedRec.X > Assets.GDM.PreferredBackBufferWidth)
+                { magnitude.X = -3; }
+                if (button.window.rec_bkg.openedRec.X < 0)
+                { magnitude.X = 3; }
+                if (button.window.rec_bkg.openedRec.Y > Assets.GDM.PreferredBackBufferHeight)
+                { magnitude.Y = -3; }
+                if (button.window.rec_bkg.openedRec.Y < 0)
+                { magnitude.Y = 3; }
+
+                #endregion
+
             }
 
 
@@ -256,18 +274,14 @@ namespace AUI
 
         //
 
-        public void SpawnChild()
-        {
-            //create a baby spider button
-        }
-
         public void ChooseDirection()
         {   
             //set a magnitude direction randomly
-            //magnitude.X = Functions.Random.Next(-movement, movement+1);
-            //magnitude.Y = Functions.Random.Next(-movement, movement+1);
+            magnitude.X += Functions.Random.Next(-movement, movement+2);
+            magnitude.Y += Functions.Random.Next(-movement, movement+2);
             //orig way returns values close to 0, making movement hard to predict
 
+            /*
             //set initial positive values > 0
             magnitude.X = Functions.Random.Next(1, movement + 1);
             magnitude.Y = Functions.Random.Next(1, movement + 1);
@@ -276,7 +290,30 @@ namespace AUI
             { magnitude.X *= -1; }
             if (Functions.Random.Next(0, 101) > 50)
             { magnitude.Y *= -1; }
+            */
         }
+
+        public void SpawnChildren()
+        {
+            //create spider babies
+            for(int g = 0; g < 30; g++)
+            {
+                babyCounter++;
+                //create a baby spider button
+                AUI_SpiderBabyButton spiderBaby =
+                    new AUI_SpiderBabyButton(
+                        button.window.rec_bkg.openedRec.X + 16 * 2,
+                        button.window.rec_bkg.openedRec.Y,
+                        "" + babyCounter, ListRef);
+                spiderBaby.button.CenterText();
+                spiderBaby.Open();
+                spiderBaby.wandering = true;
+                spiderBaby.ChooseDirection();
+                ListRef.Add(spiderBaby);
+            }
+        }
+
+
 
 
 
