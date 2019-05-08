@@ -19,7 +19,7 @@ namespace AUI
 {
     public enum ExitAction
     {
-        Title, Example1, StressTest
+        Title, Example1, StressTest, Spider
     }
     
     public abstract class Screen

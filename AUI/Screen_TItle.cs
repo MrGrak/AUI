@@ -45,7 +45,7 @@ namespace AUI
             aui_instances.Add(button_screen2);
 
             button_screen3 = new AUI_Button(
-                16 * 22, 16 * 20, 16 * 5, "example 3");
+                16 * 22, 16 * 20, 16 * 5, "spider game");
             button_screen3.CenterText();
             aui_instances.Add(button_screen3);
 
@@ -154,7 +154,7 @@ namespace AUI
                         button_screen3.window.rec_bkg.openedRec,
                         Input.cursorPos.X, Input.cursorPos.Y))
                     {
-                        Close(ExitAction.Example1);
+                        Close(ExitAction.Spider);
                     }
                     //button 4
                     if (Functions.Contains(
@@ -191,6 +191,8 @@ namespace AUI
                 { ScreenManager.ExitAndLoad(new Screen_Example1()); }
                 else if (exitAction == ExitAction.StressTest)
                 { ScreenManager.ExitAndLoad(new Screen_StressTest()); }
+                else if (exitAction == ExitAction.Spider)
+                { ScreenManager.ExitAndLoad(new Screen_Spider()); }
             }
 
             #endregion
