@@ -82,21 +82,21 @@ namespace AUI
             line1.MoveTo(16 * 8, 16 * 13);
             line1.SetTarget(16 * 41, 16 * 13);
             line1.line.speedOpen = 20;
-            line1.line.speedClosed = 20;
+            line1.line.speedClosed = 25;
             aui_instances.Add(line1);
 
             AUI_LineWithRecs line2 = new AUI_LineWithRecs();
             line2.MoveTo(16 * 8, 16 * 18);
             line2.SetTarget(16 * 41, 16 * 18);
             line2.line.speedOpen = 15;
-            line2.line.speedClosed = 15;
+            line2.line.speedClosed = 20;
             aui_instances.Add(line2);
 
             AUI_LineWithRecs line3 = new AUI_LineWithRecs();
             line3.MoveTo(16 * 8, 16 * 23);
             line3.SetTarget(16 * 41, 16 * 23);
             line3.line.speedOpen = 10;
-            line3.line.speedClosed = 10;
+            line3.line.speedClosed = 20;
             aui_instances.Add(line3);
         }
 

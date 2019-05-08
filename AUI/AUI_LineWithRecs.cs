@@ -50,8 +50,8 @@ namespace AUI
             {
                 displayState = DisplayState.Closing;
                 line.Close();
-                recA.Close(); recA.alpha = 0.0f;
-                recB.Close(); recB.alpha = 0.0f;
+                recA.Close();
+                recB.Close();
             }
         }
 

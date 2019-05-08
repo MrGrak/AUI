@@ -64,12 +64,12 @@ namespace AUI
             {   
                 if(animType == LineAnimType.FadeInOut)
                 {   //animate to open state
-                    if(alpha > 100)
+                    if(alpha > 1.0f)
                     {
-                        alpha = 100;
+                        alpha = 1.0f;
                         displayState = DisplayState.Opened;
                     }
-                    else //alpha < 100, fade in
+                    else //alpha < 1.0, fade in
                     { alpha += speedOpen * 0.1f; }
                 }
                 else
@@ -135,7 +135,7 @@ namespace AUI
                 Assets.recTex,
                 drawRec, //draw rec
                 texRec, //texture rec
-                color, //at 100% alpha
+                color * alpha, 
                 angle,
                 texOrigin, 
                 SpriteEffects.None,
