@@ -24,6 +24,11 @@ namespace AUI
         public List<AUI_Base> aui_instances;
         AUI_Button button_back;
 
+        AUI_SpiderQueenButton spiderQueen;
+
+
+
+
         public Screen_Spider()
         {
             aui_instances = new List<AUI_Base>();
@@ -32,6 +37,12 @@ namespace AUI
                 16 * 3, 16 * 2 + 8, 16 * 3, "< to title");
             button_back.CenterText();
             aui_instances.Add(button_back);
+
+            //create test spider button
+            spiderQueen = new AUI_SpiderQueenButton(
+                16 * 10, 16 * 10,
+                "queen");
+            aui_instances.Add(spiderQueen);
         }
 
         public override void Open()
