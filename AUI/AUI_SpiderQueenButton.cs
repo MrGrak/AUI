@@ -109,6 +109,9 @@ namespace AUI
                         }
                         //spawn a child as feedback
                         SpawnChildren();
+                        //change text as well
+                        button.text.ChangeText("XXXXXXXXXXXXX");
+                        button.CenterText();
                     }
                 }
 
@@ -132,6 +135,10 @@ namespace AUI
                         wandering = false;
                         //close all legs
                         for (i = 0; i < 8; i++) { lines[i].Close(); }
+                        //change text
+                        //change text as well
+                        button.text.ChangeText("hmm...");
+                        button.CenterText();
                     }
 
                     //randomly modify moving direction
@@ -296,7 +303,7 @@ namespace AUI
         public void SpawnChildren()
         {
             //create spider babies
-            for(int g = 0; g < 30; g++)
+            for(int g = 0; g < 50; g++)
             {
                 babyCounter++;
                 //create a baby spider button

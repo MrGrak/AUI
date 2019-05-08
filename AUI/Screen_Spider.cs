@@ -36,7 +36,7 @@ namespace AUI
             button_back.CenterText();
             aui_instances.Add(button_back);
 
-            
+            /*
             for(int x = 0; x < 9; x++)
             {
                 for (int y = 0; y < 1; y++)
@@ -50,15 +50,17 @@ namespace AUI
                     aui_instances.Add(spiderQueen);
                 }
             }
+            */
 
-            /*
+            
             //single
             AUI_SpiderQueenButton test =
                 new AUI_SpiderQueenButton(
-                16 * 5, 16 * 12, "test", aui_instances);
+                16 * 22, 16 * 18, "hmm...", aui_instances);
             aui_instances.Add(test);
-            */
+            
 
+            /*
             AUI_LineWithRecs line0 = new AUI_LineWithRecs();
             line0.MoveTo(16 * 5, 16 * 15);
             line0.SetTarget(16 * 45, 16 * 15);
@@ -68,6 +70,7 @@ namespace AUI
             line1.MoveTo(16 * 5, 16 * 20);
             line1.SetTarget(16 * 45, 16 * 20);
             aui_instances.Add(line1);
+            */
         }
 
         public override void Open()
