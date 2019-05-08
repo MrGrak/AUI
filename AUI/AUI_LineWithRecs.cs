@@ -49,7 +49,9 @@ namespace AUI
                 || displayState == DisplayState.Opening)
             {
                 displayState = DisplayState.Closing;
-                line.Close(); recA.Close(); recB.Close();
+                line.Close();
+                recA.Close(); recA.alpha = 0.0f;
+                recB.Close(); recB.alpha = 0.0f;
             }
         }
 
@@ -87,7 +89,9 @@ namespace AUI
 
         public override void Draw()
         {
-            line.Draw(); recA.Draw(); recB.Draw();
+            line.Draw();
+            recA.Draw();
+            recB.Draw();
         }
 
         //

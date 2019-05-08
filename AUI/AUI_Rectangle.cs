@@ -108,7 +108,7 @@ namespace AUI
                 Assets.recTex,
                 drawRec, //draw rec
                 texRec, //texture rec
-                color, //at 100% alpha
+                color * alpha, 
                 0.0f,
                 texOrigin,
                 SpriteEffects.None,
