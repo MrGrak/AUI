@@ -24,7 +24,7 @@ namespace AUI
         AUI_Button button_screen1;
         AUI_Button button_screen2;
         AUI_Button button_screen3;
-        AUI_Button button_screen4;
+        AUI_Button button_radial;
         AUI_Button button_screen5;
         AUI_Text titleText;
         AUI_Text descText;
@@ -49,10 +49,10 @@ namespace AUI
             button_screen3.CenterText();
             aui_instances.Add(button_screen3);
 
-            button_screen4 = new AUI_Button(
-                16 * 29, 16 * 20, 16 * 5, "example 4");
-            button_screen4.CenterText();
-            aui_instances.Add(button_screen4);
+            button_radial = new AUI_Button(
+                16 * 29, 16 * 20, 16 * 5, "radial menu");
+            button_radial.CenterText();
+            aui_instances.Add(button_radial);
 
             button_screen5 = new AUI_Button(
                 16 * 36, 16 * 20, 16 * 5, "example 5");
@@ -158,10 +158,10 @@ namespace AUI
                     }
                     //button 4
                     if (Functions.Contains(
-                        button_screen4.window.rec_bkg.openedRec,
+                        button_radial.window.rec_bkg.openedRec,
                         Input.cursorPos.X, Input.cursorPos.Y))
                     {
-                        Close(ExitAction.Example1);
+                        Close(ExitAction.RadialMenu);
                     }
                     //button 5
                     if (Functions.Contains(
@@ -193,6 +193,8 @@ namespace AUI
                 { ScreenManager.ExitAndLoad(new Screen_StressTest()); }
                 else if (exitAction == ExitAction.Spider)
                 { ScreenManager.ExitAndLoad(new Screen_Spider()); }
+                else if (exitAction == ExitAction.RadialMenu)
+                { ScreenManager.ExitAndLoad(new Screen_Radial()); }
             }
 
             #endregion

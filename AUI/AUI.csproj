@@ -60,6 +60,7 @@
     <Compile Include="Screen_Example.cs" />
     <Compile Include="Screen_Example1.cs" />
     <Compile Include="Screen_Manager.cs" />
+    <Compile Include="Screen_Radial.cs" />
     <Compile Include="Screen_Spider.cs" />
     <Compile Include="Screen_StressTest.cs" />
     <Compile Include="Screen_Title.cs" />

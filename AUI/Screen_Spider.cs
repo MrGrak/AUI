@@ -20,7 +20,7 @@ namespace AUI
     //this is just an example of how to write a basic screen with a back button
     public class Screen_Spider : Screen
     {
-        int i;
+        //int i;
         public List<AUI_Base> aui_instances;
         AUI_Button button_back;
         
